@@ -1,22 +1,9 @@
 titanic3 <- read.csv("C:/Users/mguardado/Downloads/titanic33.csv")
 write.csv(titanic3, file = "titanic_original.csv")
 titanic3$embarked <- sub("^$", "S", titanic3$embarked)
-titanic3$embarked
 titanic3$age[is.na(titanic3$age)] <- mean(titanic3$age, na.rm = TRUE)
-titanic3$age
 titanic3$boat <- sub("^$", "None", titanic3$boat)
-titanic3$boat
 titanic3$cabin <- sub("^$", NA, titanic3$cabin)
-titani3c$cabin
-titanic3$cabin
 titanic3$has_cabin_number <- ifelse(is.na(titanic3$cabin), c(0), c(1))
-titanic3$has_cabin_number
-write(titanic3, file = "titanic_clean.csv")
-write(titanic$3, file = "titanic_clean.csv")
-write(titanic3, file = "titanic_clean.csv")
 write.csv(titanic3, file = "titanic_clean.csv")
-savehistory(ti)
-savehistory(file = ".Rhistory")
-View(titanic3)
-View(titanic3)
 savehistory(file = "code_history")
