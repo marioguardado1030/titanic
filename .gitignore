@@ -1,0 +1,3 @@
+# gstack project-local state (transient — not for version control)
+.gstack/
+.gstack-worktrees/
