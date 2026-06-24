@@ -86,7 +86,34 @@ spearman_rho(judge_scores, human_scores)
 disagreement_breakdown(judge_scores, human_scores)  # surfaces systematic skew
 ```
 
-A runnable end-to-end demo is in [`../examples/run_evaluation.py`](../examples/run_evaluation.py).
+A runnable end-to-end demo is in [`../examples/run_evaluation.py`](../examples/run_evaluation.py),
+and a reference-grounded one that judges summaries of the Titanic dataset is in
+[`../examples/evaluate_titanic_summaries.py`](../examples/evaluate_titanic_summaries.py).
+
+## Command line
+
+The package ships a CLI (`python -m llm_judge`) that prints JSON to stdout, so it
+composes with `jq` and pipes. Criteria are a JSON file: a list of
+`{name, description, weight}` objects.
+
+```bash
+# Score one response
+python -m llm_judge score --prompt-file q.txt --response-file a.txt -c criteria.json
+
+# Compare two (two-pass, position-bias mitigated)
+python -m llm_judge compare --prompt-file q.txt --a a.txt --b b.txt -c criteria.json
+
+# Rank several (best first)
+python -m llm_judge rank --prompt-file q.txt --responses r1.txt r2.txt -c criteria.json
+
+# Generate a rubric for one criterion
+python -m llm_judge rubric --name "Clarity" --description "Clear and readable?" --domain "support docs"
+```
+
+Global flags: `--model <id>` (default Claude Opus 4.8), `--scale-min`, `--scale-max`.
+
+In **Cowork / Claude Code**, the same flows are exposed as the `/evaluate` skill
+(`.claude/skills/evaluate/SKILL.md`), which drives this CLI.
 
 ## Design notes
 
