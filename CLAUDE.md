@@ -1,23 +1,12 @@
-## gstack (REQUIRED — global install)
+# Titanic Project
 
-**Before doing ANY work, verify gstack is installed:**
+This repo is used for AI-assisted work with Claude Code and Cowork.
 
-```bash
-test -d ~/.claude/skills/gstack/bin && echo "GSTACK_OK" || echo "GSTACK_MISSING"
-```
+## Skills
 
-If GSTACK_MISSING: STOP. Do not proceed. Tell the user:
+Custom skills live in `~/.claude/skills/`. Use `/skill-name` to invoke them.
 
-> gstack is required for all AI-assisted work in this repo.
-> Install it:
-> ```bash
-> git clone --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack
-> cd ~/.claude/skills/gstack && ./setup --team
-> ```
-> Then restart your AI coding tool.
+## Notes
 
-Do not skip skills, ignore gstack errors, or work around missing gstack.
-
-Using gstack skills: After install, skills like /qa, /ship, /review, /investigate,
-and /browse are available. Use /browse for all web browsing.
-Use ~/.claude/skills/gstack/... for gstack file paths (the global path).
+- Use the Walmart Connect Ads API skill for advertising work.
+- See `.claude/skills/` for available tools.
