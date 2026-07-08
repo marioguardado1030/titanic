@@ -67,9 +67,9 @@
 
 | # | Task | Solo | w/ AI | Notes |
 |---|---|---|---|---|
-| 1 | Apply: Amazon Associates | 1-2 hrs + wait | same | Needs live site w/ traffic |
-| 2 | Apply: Thrive Market, iHerb, ShareASale (gateway to small brands) | 2-3 hrs | 1 hr | |
-| 2b | Apply: Instacart (or DoorDash) affiliate — the "buy it at YOUR local store" path | 1-2 hrs | same | Local-store fulfillment with online-checkout attribution; makes swaps feel local from day 1 |
+| 1 | ~~Amazon Associates~~ — **skipped, founder decision** | — | — | Rate risk (Amazon cut affiliate rates ~8%→1–3% overnight in 2020), platform dependence, and brand mismatch with small-biz-first. Revisit only if data demands it |
+| 2 | Apply: direct small-brand programs via ShareASale/Impact + Thrive Market, iHerb | 2-3 hrs | 1 hr | Highest cut (10–20%), values-aligned; these brands are the future marketplace tenants |
+| 2b | *(Optional bridge)* Instacart/DoorDash affiliate for "buy at your local store" | 1-2 hrs | same | Stacks a second middleman (Guardi → Instacart → store): thin cut, no customer ownership, data shared with another platform. Tactic only — the real local play is the one-city pilot |
 | 3 | Wire swap card → affiliate link w/ disclosure | 4-6 hrs | 2 hrs | One link-resolution layer so networks can change later |
 | 4 | Build outreach list: 20-30 small clean-label brands | 3-4 hrs | 1-2 hrs (AI drafts) | Target categories that show up most in scans |
 | 5 | Recruit 5-10 brands for direct partnership talks — founder's home turf | 6-10 hrs/mo | same | Pitch: "rank first for values-aligned shoppers" |
@@ -125,7 +125,7 @@
 | Claude API @ ~1,000 scans/mo | ~$10-50/mo | Consider caching common products |
 | Claude API @ ~10,000 scans/mo | ~$100-500/mo | Revisit model/caching then — not a Day 1-90 problem |
 | Analytics | $0 | Free tier sufficient under ~1k events/mo |
-| Affiliate network fees | $0 | Amazon, ShareASale, Thrive, iHerb — free to join |
+| Affiliate network fees | $0 | ShareASale, Impact, Thrive, iHerb — free to join |
 | LLC formation | $100-300 | State-dependent; before first affiliate dollar |
 | Business bank account | $0 | Usually free at this scale |
 | **Total Day 1-90** | **~$120-350** | Dominated by LLC, not tech |
