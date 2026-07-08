@@ -1,0 +1,351 @@
+<title>Guardi — Know what's really in it</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{
+  --bg:#F2EFE7; --surface:#FFFFFF; --surface-2:#EEEBE0; --ink:#15201B; --ink-soft:#525C55;
+  --line:#E3DFD3; --brand:#0E5C4A; --brand-ink:#0B4A3B; --brand-soft:#DBE8E2;
+  --accent:#C6803A; --good:#2E9E63; --warn:#D5902A; --bad:#CE4B39;
+  --shadow:0 1px 2px rgba(20,32,27,.06),0 8px 24px rgba(20,32,27,.08);
+  --radius:18px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E1512; --surface:#161F1B; --surface-2:#1E2A24; --ink:#E9F1EC; --ink-soft:#9BADA4;
+    --line:#26332D; --brand:#57C6A6; --brand-ink:#57C6A6; --brand-soft:#17302A;
+    --accent:#E0A45F; --good:#43B879; --warn:#E4A63C; --bad:#E06A57;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="light"]{
+  --bg:#F2EFE7; --surface:#FFFFFF; --surface-2:#EEEBE0; --ink:#15201B; --ink-soft:#525C55;
+  --line:#E3DFD3; --brand:#0E5C4A; --brand-ink:#0B4A3B; --brand-soft:#DBE8E2;
+  --accent:#C6803A; --good:#2E9E63; --warn:#D5902A; --bad:#CE4B39;
+  --shadow:0 1px 2px rgba(20,32,27,.06),0 8px 24px rgba(20,32,27,.08);
+}
+:root[data-theme="dark"]{
+  --bg:#0E1512; --surface:#161F1B; --surface-2:#1E2A24; --ink:#E9F1EC; --ink-soft:#9BADA4;
+  --line:#26332D; --brand:#57C6A6; --brand-ink:#57C6A6; --brand-soft:#17302A;
+  --accent:#E0A45F; --good:#43B879; --warn:#E4A63C; --bad:#E06A57;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink); min-height:100vh;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; line-height:1.5;
+  display:flex; justify-content:center;
+}
+.mono{font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+a{color:inherit}
+
+/* phone frame */
+.phone{
+  width:100%; max-width:430px; min-height:100vh; background:var(--surface-2);
+  position:relative; display:flex; flex-direction:column; overflow:hidden;
+}
+@media(min-width:480px){
+  body{padding:24px 16px; align-items:flex-start}
+  .phone{min-height:auto; height:calc(100vh - 48px); max-height:900px;
+    border-radius:34px; box-shadow:var(--shadow); border:1px solid var(--line)}
+}
+.screen{flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch}
+.pad{padding:22px 20px 28px}
+
+/* top bar */
+.topbar{display:flex; align-items:center; gap:10px; padding:18px 20px 8px}
+.brandmark{display:flex; align-items:center; gap:9px}
+.shield{width:26px;height:26px;flex:none}
+.wordmark{font-weight:700; font-size:19px; letter-spacing:-.02em}
+.wordmark span{color:var(--brand-ink)}
+.tag{margin:2px 0 0; color:var(--ink-soft); font-size:13.5px}
+
+/* search + scan */
+.search{
+  display:flex; align-items:center; gap:10px; background:var(--surface);
+  border:1px solid var(--line); border-radius:14px; padding:13px 15px; margin:16px 0 14px;
+  box-shadow:var(--shadow);
+}
+.search input{border:none;background:none;outline:none;flex:1;font-size:15.5px;color:var(--ink)}
+.search input::placeholder{color:var(--ink-soft)}
+.scanbtn{
+  width:100%; display:flex; align-items:center; justify-content:center; gap:10px;
+  background:var(--brand); color:#fff; padding:16px; border-radius:14px; font-weight:650;
+  font-size:16px; box-shadow:var(--shadow); transition:transform .08s ease, filter .15s;
+}
+:root[data-theme="dark"] .scanbtn, @media(prefers-color-scheme:dark){}
+.scanbtn:active{transform:translateY(1px)}
+.scanbtn:hover{filter:brightness(1.05)}
+
+.eyebrow{font-size:11.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-soft); font-weight:650; margin:26px 2px 12px}
+
+/* sample cards */
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:14px; text-align:left; display:flex; flex-direction:column; gap:9px;
+  box-shadow:var(--shadow); transition:transform .1s ease, border-color .15s;
+}
+.card:hover{transform:translateY(-2px); border-color:var(--brand)}
+.thumb{width:100%; aspect-ratio:1.4; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:30px}
+.card .nm{font-weight:620; font-size:14px; line-height:1.25; letter-spacing:-.01em}
+.card .ct{font-size:12px; color:var(--ink-soft)}
+.pill{
+  align-self:flex-start; display:inline-flex; align-items:center; gap:6px;
+  font-size:12px; font-weight:700; padding:3px 9px 3px 8px; border-radius:999px;
+}
+.dot{width:8px;height:8px;border-radius:50%}
+
+/* readout */
+.back{display:inline-flex;align-items:center;gap:7px;color:var(--ink-soft);font-weight:600;font-size:14px;padding:16px 20px 4px}
+.hero{display:flex; gap:16px; align-items:center; padding:6px 20px 4px}
+.hero .thumb{width:78px;height:78px;aspect-ratio:auto;flex:none;font-size:34px;border-radius:16px}
+.hero h1{margin:0;font-size:20px;letter-spacing:-.02em;text-wrap:balance;line-height:1.2}
+.hero .ct{color:var(--ink-soft);font-size:13.5px;margin-top:3px}
+
+.scorewrap{display:flex; align-items:center; gap:18px; margin:20px 20px 6px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+.ring{position:relative; width:96px; height:96px; flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center}
+.ring .num b{font-size:30px; line-height:1; letter-spacing:-.02em}
+.ring .num small{font-size:10px; color:var(--ink-soft); margin-top:2px}
+.verdict b{font-size:17px; letter-spacing:-.01em}
+.verdict p{margin:5px 0 0; color:var(--ink-soft); font-size:13.5px; line-height:1.45}
+
+.sec{margin:24px 20px 0}
+.sec h2{font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 12px; font-weight:700}
+.flag{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:10px; box-shadow:var(--shadow)}
+.flag .row{display:flex; align-items:center; gap:9px; justify-content:space-between}
+.flag .nm{font-weight:650; font-size:14.5px; letter-spacing:-.01em}
+.flag p{margin:8px 0 10px; font-size:13.5px; color:var(--ink); line-height:1.5}
+.sev{font-size:11px;font-weight:750;padding:3px 8px;border-radius:7px;letter-spacing:.02em;white-space:nowrap}
+.source{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-soft)}
+.source a{color:var(--brand-ink);text-decoration:none;font-weight:600;border-bottom:1px solid var(--brand-soft)}
+.source a:hover{border-bottom-color:var(--brand)}
+
+.swap{background:linear-gradient(180deg,var(--brand-soft),var(--surface)); border:1px solid var(--brand); border-radius:var(--radius); padding:16px; margin:8px 20px 0; box-shadow:var(--shadow)}
+.swap .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--brand-ink);font-weight:750}
+.swap .body{display:flex;gap:13px;align-items:center;margin-top:11px}
+.swap .thumb{width:56px;height:56px;aspect-ratio:auto;font-size:26px;border-radius:13px;background:var(--surface);flex:none}
+.swap .nm{font-weight:670;font-size:15px;letter-spacing:-.01em}
+.swap .why{font-size:13px;color:var(--ink-soft);margin-top:2px}
+.buy{margin-top:13px;width:100%;background:var(--brand);color:#fff;padding:13px;border-radius:12px;font-weight:650;font-size:14.5px;display:flex;align-items:center;justify-content:center;gap:8px}
+.buy small{opacity:.8;font-weight:500}
+
+.good-note{margin:16px 20px 0; padding:15px; background:var(--surface); border:1px solid var(--line); border-radius:14px; font-size:13.5px; color:var(--ink-soft); box-shadow:var(--shadow)}
+.good-note b{color:var(--good)}
+
+.disclaimer{margin:22px 20px 8px; font-size:11.5px; color:var(--ink-soft); line-height:1.5; text-align:center}
+
+/* bottom nav */
+.nav{display:flex; border-top:1px solid var(--line); background:var(--surface)}
+.nav button{flex:1; padding:11px 0 15px; display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10.5px; color:var(--ink-soft); font-weight:600}
+.nav button.on{color:var(--brand-ink)}
+.nav .ic{font-size:19px;line-height:1}
+
+/* scanning overlay */
+.scanning{position:absolute; inset:0; background:var(--bg); display:none; flex-direction:column; align-items:center; justify-content:center; gap:22px; z-index:20}
+.scanning.show{display:flex}
+.reticle{width:180px;height:180px;border-radius:22px;position:relative;border:2px solid var(--brand-soft)}
+.reticle::before{content:"";position:absolute;left:10px;right:10px;top:10px;height:2px;background:var(--brand);border-radius:2px;box-shadow:0 0 12px var(--brand);animation:scan 1.4s ease-in-out infinite}
+@keyframes scan{0%{top:10px}50%{top:158px}100%{top:10px}}
+.scanning p{color:var(--ink-soft);font-size:14px;font-weight:600}
+@media (prefers-reduced-motion:reduce){.reticle::before{animation:none;top:50%}}
+
+:focus-visible{outline:2.5px solid var(--brand);outline-offset:2px;border-radius:6px}
+</style>
+
+<div class="phone">
+  <div class="screen" id="screen"></div>
+  <nav class="nav">
+    <button class="on"><span class="ic">◎</span>Scan</button>
+    <button><span class="ic">♡</span>Saved</button>
+    <button><span class="ic">▤</span>Swaps</button>
+    <button><span class="ic">◔</span>You</button>
+  </nav>
+  <div class="scanning" id="scanning">
+    <div class="reticle"></div>
+    <p>Reading the label…</p>
+  </div>
+</div>
+
+<script>
+const SHIELD = `<svg class="shield" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5 4 5.2v6.3c0 4.9 3.3 8.4 8 9.9 4.7-1.5 8-5 8-9.9V5.2L12 2.5Z" fill="var(--brand)"/><path d="m8.4 12 2.5 2.6L16 9.3" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+// severity presentation
+const SEV = {
+  high:{lbl:"Avoid", bg:"var(--bad)", fg:"#fff"},
+  med:{lbl:"Caution", bg:"var(--warn)", fg:"#3a2a08"},
+  low:{lbl:"Minor", bg:"var(--surface-2)", fg:"var(--ink-soft)"},
+  good:{lbl:"Good", bg:"var(--good)", fg:"#fff"}
+};
+function band(score){
+  if(score>=75) return {c:"var(--good)", w:"Great choice"};
+  if(score>=55) return {c:"var(--warn)", w:"So-so"};
+  if(score>=40) return {c:"var(--warn)", w:"Be careful"};
+  return {c:"var(--bad)", w:"Poor"};
+}
+
+const PRODUCTS = [
+  {
+    id:"cereal", emoji:"🥣", tint:"#F3D9A6", name:"MorningCrunch Choco Loops", cat:"Kids' cereal",
+    score:34,
+    bottom:"Mostly sugar and dyes dressed up with added vitamins. There's a much cleaner bowl for the same price.",
+    flags:[
+      {nm:"Red 40 + Yellow 5 (artificial dyes)", sev:"high", txt:"Synthetic color additives. Multiple reviews link them to hyperactivity and attention issues in some children.", src:"CSPI", url:"https://www.cspinet.org"},
+      {nm:"High-fructose corn syrup", sev:"high", txt:"13g of added sugar per small serving — about 3 teaspoons before you add anything.", src:"FDA labeling", url:"https://www.fda.gov"},
+      {nm:"BHT (preservative)", sev:"med", txt:"Petroleum-derived preservative. Banned or restricted in parts of the EU and Japan; debated safety.", src:"EWG", url:"https://www.ewg.org"},
+      {nm:"Fortified B-vitamins + iron", sev:"good", txt:"Genuinely useful micronutrients added back in — the one real plus here.", src:"USDA", url:"https://www.usda.gov"}
+    ],
+    swap:{emoji:"🌾", name:"Whole-Grain Honey O's (organic)", score:82, why:"Same crunch, real whole grain, no dyes, a third of the sugar."}
+  },
+  {
+    id:"drink", emoji:"🧃", tint:"#A9D3EE", name:"Volt Blue Sports Drink", cat:"Sports / energy drink",
+    score:22,
+    bottom:"A soda in athletic clothing. The electrolytes are real; so is the 34g of sugar and a fuel-industry emulsifier.",
+    flags:[
+      {nm:"Brominated vegetable oil (BVO)", sev:"high", txt:"Keeps flavor mixed in. Banned in the EU, UK and Japan; the FDA moved to revoke its use in 2024.", src:"FDA", url:"https://www.fda.gov"},
+      {nm:"34g added sugar", sev:"high", txt:"More sugar than a can of cola, in a drink marketed as healthy hydration.", src:"FDA labeling", url:"https://www.fda.gov"},
+      {nm:"Yellow 5 (tartrazine)", sev:"med", txt:"Artificial dye some people are sensitive to; purely cosmetic — it does nothing for you.", src:"EWG", url:"https://www.ewg.org"}
+    ],
+    swap:{emoji:"🥥", name:"Coconut Water + Electrolytes", score:79, why:"Real potassium and sodium, no dye, no BVO, a quarter of the sugar."}
+  },
+  {
+    id:"bar", emoji:"🍫", tint:"#D9C1A0", name:"FitPro Cookie-Dough Protein Bar", cat:"Protein / snack bar",
+    score:51,
+    bottom:"Solid protein, but the 'dough' flavor rides on artificial sweetener and sugar alcohols. Fine sometimes; not an everyday food.",
+    flags:[
+      {nm:"Sucralose (artificial sweetener)", sev:"med", txt:"Zero-calorie sweetener. Generally regarded safe, but emerging research questions gut and metabolic effects.", src:"peer-reviewed", url:"https://pubmed.ncbi.nlm.nih.gov"},
+      {nm:"Sugar alcohols (maltitol)", sev:"med", txt:"Low-sugar on paper, but a common cause of bloating and stomach upset in larger amounts.", src:"CSPI", url:"https://www.cspinet.org"},
+      {nm:"Palm oil", sev:"low", txt:"Not a health flag so much as an environmental one — a major driver of deforestation.", src:"EWG", url:"https://www.ewg.org"},
+      {nm:"20g protein", sev:"good", txt:"Legitimately high protein — the reason to reach for it in the first place.", src:"USDA", url:"https://www.usda.gov"}
+    ],
+    swap:{emoji:"🌰", name:"Date & Nut Bar (3 ingredients)", score:74, why:"Whole-food protein and fiber, sweetened only by dates — no sucralose."}
+  },
+  {
+    id:"noodle", emoji:"🍜", tint:"#EEC7A0", name:"QuickBowl Instant Noodles", cat:"Instant meal",
+    score:29,
+    bottom:"Cheap and fast, but a single bowl is most of a day's sodium plus a fuel-derived preservative. Easy to do better.",
+    flags:[
+      {nm:"1,820mg sodium", sev:"high", txt:"About 79% of a full day's sodium in one bowl — a real driver of blood-pressure risk.", src:"FDA labeling", url:"https://www.fda.gov"},
+      {nm:"TBHQ (preservative)", sev:"med", txt:"Petroleum-derived preservative used to extend shelf life; intake limits are set for a reason.", src:"EWG", url:"https://www.ewg.org"},
+      {nm:"Palm oil (fried block)", sev:"low", txt:"The noodles are flash-fried in palm oil — adds saturated fat and an environmental cost.", src:"CSPI", url:"https://www.cspinet.org"}
+    ],
+    swap:{emoji:"🍲", name:"Low-Sodium Miso Cup", score:68, why:"Real broth flavor, ~40% less sodium, no petroleum-based preservative."}
+  },
+  {
+    id:"oats", emoji:"🌾", tint:"#CFE0B4", name:"Plain Rolled Oats", cat:"Breakfast grain",
+    score:96,
+    bottom:"One ingredient: oats. Whole grain, high fiber, no additives. This is what 'clean' actually looks like.",
+    flags:[
+      {nm:"100% whole grain", sev:"good", txt:"A single-ingredient food — nothing added, nothing to flag.", src:"USDA", url:"https://www.usda.gov"},
+      {nm:"Beta-glucan fiber", sev:"good", txt:"The soluble fiber in oats is well-studied for lowering LDL cholesterol.", src:"peer-reviewed", url:"https://pubmed.ncbi.nlm.nih.gov"}
+    ],
+    swap:null
+  }
+];
+
+const screen = document.getElementById('screen');
+
+function home(){
+  window.scrollTo(0,0);
+  screen.innerHTML = `
+    <div class="topbar">
+      <div class="brandmark">${SHIELD}<span class="wordmark">Guar<span>di</span></span></div>
+    </div>
+    <div class="pad" style="padding-top:6px">
+      <p class="tag">Point it at a product. Know what's really in it — with the receipts.</p>
+      <div class="search">
+        <span aria-hidden="true" style="color:var(--ink-soft)">⌕</span>
+        <input id="q" placeholder="Search a product…" aria-label="Search a product">
+      </div>
+      <button class="scanbtn" id="scan">📷 Scan a product</button>
+      <div class="eyebrow">Try a sample</div>
+      <div class="grid">
+        ${PRODUCTS.map(p=>{
+          const b=band(p.score);
+          return `<button class="card" data-id="${p.id}">
+            <div class="thumb" style="background:${p.tint}">${p.emoji}</div>
+            <div class="nm">${p.name}</div>
+            <div class="ct">${p.cat}</div>
+            <span class="pill" style="background:var(--surface-2)">
+              <span class="dot" style="background:${b.c}"></span>
+              <span class="mono" style="color:${b.c}">${p.score}</span>
+              <span style="color:var(--ink-soft);font-weight:600">${b.w}</span>
+            </span>
+          </button>`;
+        }).join('')}
+        <div class="card" style="opacity:.6;cursor:default">
+          <div class="thumb" style="background:var(--surface-2)">💄</div>
+          <div class="nm">Cosmetics</div>
+          <div class="ct">Coming next</div>
+          <span class="pill" style="background:var(--surface-2);color:var(--ink-soft)">Soon</span>
+        </div>
+      </div>
+      <p class="disclaimer">Prototype with sample data for demonstration. The real Guardi aggregates live sources (EWG, CSPI, FDA, peer-reviewed studies) and cites every claim — it reports what sources say, it doesn't decide truth itself.</p>
+    </div>`;
+  document.querySelectorAll('.card[data-id]').forEach(c=>c.onclick=()=>detail(c.dataset.id));
+  document.getElementById('scan').onclick = scan;
+}
+
+function scan(){
+  const ov=document.getElementById('scanning');
+  ov.classList.add('show');
+  const pick = PRODUCTS[Math.floor(Math.random()*(PRODUCTS.length-1))]; // bias away from oats for demo drama
+  setTimeout(()=>{ov.classList.remove('show'); detail(pick.id);}, 1500);
+}
+
+function detail(id){
+  const p = PRODUCTS.find(x=>x.id===id); if(!p) return;
+  window.scrollTo(0,0);
+  const b=band(p.score);
+  const R=42, C=2*Math.PI*R, off=C*(1-p.score/100);
+  screen.innerHTML = `
+    <button class="back" id="back">‹ Back to scan</button>
+    <div class="hero">
+      <div class="thumb" style="background:${p.tint}">${p.emoji}</div>
+      <div><h1>${p.name}</h1><div class="ct">${p.cat}</div></div>
+    </div>
+    <div class="scorewrap">
+      <div class="ring">
+        <svg width="96" height="96" viewBox="0 0 96 96">
+          <circle cx="48" cy="48" r="${R}" fill="none" stroke="var(--surface-2)" stroke-width="8"/>
+          <circle cx="48" cy="48" r="${R}" fill="none" stroke="${b.c}" stroke-width="8"
+            stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}"/>
+        </svg>
+        <div class="num"><b class="mono" style="color:${b.c}">${p.score}</b><small>/ 100</small></div>
+      </div>
+      <div class="verdict"><b style="color:${b.c}">${b.w}</b><p>${p.bottom}</p></div>
+    </div>
+    <div class="sec">
+      <h2>What's inside — and where we got it</h2>
+      ${p.flags.map(f=>{
+        const s=SEV[f.sev];
+        return `<div class="flag">
+          <div class="row"><span class="nm">${f.nm}</span>
+            <span class="sev" style="background:${s.bg};color:${s.fg}">${s.lbl}</span></div>
+          <p>${f.txt}</p>
+          <span class="source">Source: <a href="${f.url}" target="_blank" rel="noopener">${f.src}</a> ↗</span>
+        </div>`;
+      }).join('')}
+    </div>
+    ${p.swap ? `
+    <div class="sec"><h2 style="margin-bottom:8px">A cleaner swap</h2></div>
+    <div class="swap">
+      <span class="lbl">Guardi recommends</span>
+      <div class="body">
+        <div class="thumb">${p.swap.emoji}</div>
+        <div><div class="nm">${p.swap.name}</div><div class="why">${p.swap.why}</div></div>
+        <span class="pill mono" style="background:var(--surface);color:var(--good);margin-left:auto">${p.swap.score}</span>
+      </div>
+      <button class="buy" onclick="alert('In the real app this opens the seller — and Guardi earns a small affiliate cut. No inventory, ever.')">Find it &amp; buy <small>· affiliate</small></button>
+    </div>` : `
+    <div class="good-note"><b>You're good.</b> Nothing to flag here — this is a genuinely clean choice. No swap needed.</div>`}
+    <p class="disclaimer">Sample data for this prototype. Real Guardi cites live, third-party sources for every claim.</p>
+    <div style="height:14px"></div>`;
+  document.getElementById('back').onclick = home;
+}
+
+home();
+</script>
