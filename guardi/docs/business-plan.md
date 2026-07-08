@@ -133,9 +133,11 @@ Pre-revenue. This is a directional sketch of Stage 1 (affiliate) economics — e
 
 | MAU | Scans/user/mo (assumption) | Swap click-through (assumption) | Purchase rate (assumption) | Avg. order value (assumption) | Commission (assumption) | Rough monthly affiliate revenue |
 |---|---|---|---|---|---|---|
-| 1,000 | 4 | 10% | 10% | $15 | 8% | ~$5 |
-| 10,000 | 4 | 10% | 10% | $15 | 8% | ~$48 |
-| 100,000 | 4 | 10% | 10% | $15 | 8% | ~$480 |
+| 1,000 | 4 | 10% | 10% | $15 | 8% | ~$48 |
+| 10,000 | 4 | 10% | 10% | $15 | 8% | ~$480 |
+| 100,000 | 4 | 10% | 10% | $15 | 8% | ~$4,800 |
+
+Worked example at 1,000 MAU: 4,000 scans → 10% click a swap (400) → 10% of those buy (40) → × $15 avg order = $600 in sales → × 8% commission = **~$48/mo**. Each 10× in users is roughly 10× in revenue under these placeholder assumptions.
 
 These per-MAU figures are illustrative only, built on placeholder assumptions, to show the shape of the model — not a projection. Real inputs come from Stage 1 usage data once the app is live; the near-term goal is getting that instrumentation in place. Marketplace and ad revenue aren't modeled — they depend on user scale and seller relationships that don't exist yet.
 
