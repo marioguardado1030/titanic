@@ -108,8 +108,9 @@ He is not an engineer; he's building solo, nights and weekends, with AI coding t
 
 1. **Wedge: food scanner.** Launch food-only, where the source base (USDA, FDA, CSPI, EWG food data) is richest. Also where Yuka is most entrenched, making the photo-vs-barcode and citation-vs-score differences easiest to feel.
 2. **Content/social loops.** The shareable moment is "wait, THAT'S in it?" — screenshot-and-share native, similar to how Yuka scans go viral on TikTok/Instagram. Organic content is the primary early channel, not paid.
-3. **Small-brand partnerships.** With real swap-click data, approach small clean-label brands as affiliate/discovery partners — building the seller relationships Stage 2 needs.
-4. **Marketplace.** Once data shows which swaps convert and which brands want deeper ties, open direct listings, converting strongest affiliate partners into first sellers.
+3. **Local purchase, early.** Guardi's magic moment happens in a store aisle, so the swap should be buyable *here, today*, not just shippable. Classic affiliate doesn't cover in-store buys (attribution), so the local path is staged: (a) grocery-delivery affiliate programs (e.g. Instacart) — online checkout, local-store fulfillment, works near day 1; (b) receipt-scan / cashback mechanics (the Ibotta model) to attribute true in-store purchases; (c) direct one-city partnerships with local grocers — "available at [store], aisle 5" plus per-redemption promo deals. (c) is retail-media business development, the founder's home discipline.
+4. **Small-brand partnerships.** With real swap-click data, approach small clean-label brands as affiliate/discovery partners — building the seller relationships Stage 2 needs.
+5. **Marketplace.** Once data shows which swaps convert and which brands want deeper ties, open direct listings online — converting the strongest affiliate partners *and* pilot-city local sellers into the first marketplace tenants.
 
 Immediate next step: the demand test — 5 people, prototype, 2+ "I'd use this" reactions as the green light.
 

@@ -69,6 +69,7 @@
 |---|---|---|---|---|
 | 1 | Apply: Amazon Associates | 1-2 hrs + wait | same | Needs live site w/ traffic |
 | 2 | Apply: Thrive Market, iHerb, ShareASale (gateway to small brands) | 2-3 hrs | 1 hr | |
+| 2b | Apply: Instacart (or DoorDash) affiliate — the "buy it at YOUR local store" path | 1-2 hrs | same | Local-store fulfillment with online-checkout attribution; makes swaps feel local from day 1 |
 | 3 | Wire swap card → affiliate link w/ disclosure | 4-6 hrs | 2 hrs | One link-resolution layer so networks can change later |
 | 4 | Build outreach list: 20-30 small clean-label brands | 3-4 hrs | 1-2 hrs (AI drafts) | Target categories that show up most in scans |
 | 5 | Recruit 5-10 brands for direct partnership talks — founder's home turf | 6-10 hrs/mo | same | Pitch: "rank first for values-aligned shoppers" |
@@ -87,6 +88,7 @@
 |---|---|---|---|---|
 | 1 | iOS decision: PWA vs native vs App Store | 3-4 hrs | 1-2 hrs | Default PWA unless data says otherwise (App Store = weeks + $99/yr + review risk) |
 | 2 | Scope marketplace v0 (own checkout vs. stay affiliate-only) | 4-6 hrs | 2 hrs | Only worth it if affiliate margins/attribution are visibly leaky |
+| 2b | Scope one-city local pilot: 2-3 local grocers, "available at [store]" + per-redemption promo codes; receipt-scan attribution as fallback | 4-6 hrs | 2-3 hrs | Retail-media BD — founder's home discipline; pilot sellers become first marketplace tenants |
 | 3 | Verified-ads pitch deck for brands (founder's retail-media edge) | 6-8 hrs | 3-4 hrs (AI drafts, Mario edits) | Strongest edge — lean in |
 | 4 | Fundraise-or-bootstrap framework (below) | 2-3 hrs | 1 hr | Written decision, not a vibe |
 | 5 | Target metrics per path (below) | 1-2 hrs | 30 min | |
