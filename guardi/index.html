@@ -28,7 +28,7 @@ body{background:var(--bg); color:var(--ink); min-height:100vh; display:flex; jus
 .mono{font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace}
 button{font:inherit;color:inherit;cursor:pointer;border:none;background:none;text-align:left}
 a{color:inherit}
-.phone{width:100%; max-width:432px; min-height:100vh; background:var(--bg); position:relative; display:flex; flex-direction:column; overflow:hidden}
+.phone{width:100%; max-width:432px; min-height:100vh; min-height:100dvh; background:var(--bg); position:relative; display:flex; flex-direction:column; overflow:hidden}
 @media(min-width:480px){body{padding:24px 16px; align-items:flex-start}
   .phone{min-height:auto; height:calc(100vh - 48px); max-height:920px; border-radius:36px; box-shadow:var(--shadow); border:1px solid var(--line)}}
 .screen{flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch}
@@ -45,7 +45,7 @@ a{color:inherit}
 .h1{font-size:26px; line-height:1.08; letter-spacing:-.033em; font-weight:800; margin:16px 0 0; text-wrap:balance}
 .h1 em{font-style:normal; color:var(--brand-ink)}
 .sub{margin:8px 0 0; color:var(--ink-soft); font-size:13.5px; max-width:34ch}
-.scanhero{margin:16px 0 0; width:100%; display:flex; align-items:center; gap:13px; background:var(--brand); color:#fff; padding:15px 16px; border-radius:15px; box-shadow:0 8px 20px color-mix(in srgb,var(--brand) 38%, transparent); transition:transform .08s ease, filter .15s}
+.scanhero{margin:16px 0 0; width:100%; display:flex; align-items:center; gap:13px; background:var(--brand); color:#fff; padding:15px 16px; border-radius:15px; box-shadow:0 8px 20px rgba(58,64,214,.38); box-shadow:0 8px 20px color-mix(in srgb,var(--brand) 38%, transparent); transition:transform .08s ease, filter .15s}
 .scanhero:active{transform:translateY(1px)} .scanhero:hover{filter:brightness(1.06)}
 .scanhero .ic{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
 .scanhero b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.01em}
@@ -62,7 +62,7 @@ a{color:inherit}
 /* department nav */
 .markets{display:flex; gap:8px; overflow-x:auto; padding:14px 20px 12px; scrollbar-width:none; position:sticky; top:0; background:var(--bg); z-index:5; border-bottom:1px solid var(--line)}
 .markets::-webkit-scrollbar{display:none}
-.mkt{flex:none; display:flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:8px 14px 8px 11px; font-size:12.5px; font-weight:650; white-space:nowrap}
+.mkt{flex:none; display:flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:12px 15px 12px 12px; font-size:12.5px; font-weight:650; white-space:nowrap}
 .mkt.on{background:var(--ink); color:var(--bg); border-color:var(--ink)}
 .mkt .e{font-size:13px}
 
@@ -130,8 +130,10 @@ a{color:inherit}
 .goodnote b{color:var(--good)}
 .disc{margin:22px 20px 10px; font-size:11.5px; color:var(--ink-soft); line-height:1.5; text-align:center}
 .nav{display:flex; border-top:1px solid var(--line); background:var(--surface)}
-.nav button{flex:1; padding:11px 0 15px; display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10.5px; color:var(--ink-soft); font-weight:600}
+.nav button{flex:1; padding:11px 0 max(15px, env(safe-area-inset-bottom)); display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10.5px; color:var(--ink-soft); font-weight:600}
 .nav button.on{color:var(--brand-ink)} .nav .ic{font-size:18px;line-height:1}
+.toast{position:absolute; left:50%; bottom:86px; transform:translateX(-50%) translateY(8px); background:var(--ink); color:var(--bg); font-size:13px; font-weight:600; padding:11px 18px; border-radius:999px; box-shadow:var(--shadow); opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; z-index:30; max-width:85%; text-align:center}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
 .scanning{position:absolute; inset:0; background:var(--bg); display:none; flex-direction:column; align-items:center; justify-content:center; gap:22px; z-index:20}
 .scanning.show{display:flex}
 .reticle{width:184px;height:184px;border-radius:24px;position:relative;border:2px solid var(--brand-soft)}
@@ -145,12 +147,13 @@ a{color:inherit}
 <div class="phone">
   <div class="screen" id="screen"></div>
   <nav class="nav">
-    <button class="on"><span class="ic">⌂</span>Home</button>
-    <button><span class="ic">◎</span>Camera</button>
-    <button><span class="ic">♡</span>Saved</button>
-    <button><span class="ic">◔</span>You</button>
+    <button class="on" id="nav-home"><span class="ic" aria-hidden="true">⌂</span>Home</button>
+    <button id="nav-camera"><span class="ic" aria-hidden="true">◎</span>Camera</button>
+    <button id="nav-saved"><span class="ic" aria-hidden="true">♡</span>Saved</button>
+    <button id="nav-you"><span class="ic" aria-hidden="true">◔</span>You</button>
   </nav>
   <div class="scanning" id="scanning"><div class="reticle"></div><p>Reading the label…</p></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </div>
 
 <script>
@@ -231,8 +234,12 @@ const PRODUCTS=[
     swap:{emoji:"🧴",name:"Clean Canvas Fragrance-Free Serum",score:78,why:"Small brand: same retinol, no synthetic fragrance."}}
 ];
 
-const screen=document.getElementById('screen');
+const screenEl=document.getElementById('screen');
 let activeMkt="all";
+function toast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2200);
+}
 function ranked(list){return [...list].sort((a,b)=>(b.small-a.small)||(b.score-a.score));}
 function cat(m){return ranked(PRODUCTS.filter(p=>p.mkt===m));}
 
@@ -265,14 +272,20 @@ function heroHTML(){return `<div class="hero">
   <button class="scanhero" id="scan"><span class="ic">📷</span>
     <span style="flex:1"><b>Take a picture</b><span>Point your camera at any product or label</span></span>
     <span aria-hidden="true" style="font-size:19px">›</span></button>
-  <div class="searchmini"><span style="color:var(--ink-soft)">⌕</span><input placeholder="Search products" aria-label="Search"><span class="cam">📷</span></div>
+  <div class="searchmini"><span style="color:var(--ink-soft)" aria-hidden="true">⌕</span><input id="q" placeholder="Search products" aria-label="Search products"><span class="cam" aria-hidden="true">📷</span></div>
   <div class="miniflow"><b>📷 Snap</b><span class="sep">·</span><b>🔎 See the truth</b><span class="sep">·</span><b>↔ Swap</b></div>
 </div>`;}
 
 function marketsHTML(){return `<div class="markets">${MARKETS.map(m=>`<button class="mkt ${m[0]===activeMkt?'on':''}" data-m="${m[0]}"><span class="e">${m[1]}</span>${m[2]}</button>`).join('')}</div>`;}
 
-function home(){
-  window.scrollTo(0,0);
+function homeBodyHTML(qv){
+  if(qv){
+    const ql=qv.toLowerCase();
+    const hits=ranked(PRODUCTS.filter(p=>(p.name+" "+p.brand+" "+p.mkt).toLowerCase().includes(ql)));
+    const safe=qv.replace(/[<>&"]/g,'');
+    return `<div class="sechead"><h2>Results for “${safe}”</h2></div>
+      <div class="list">${hits.length?hits.map(lrow).join(''):'<p style="color:var(--ink-soft);font-size:13.5px;padding:4px 2px">Nothing found — try “cereal”, “soap”, or “noodles”.</p>'}</div>`;
+  }
   let body="";
   if(activeMkt==="all"){
     if(HISTORY.length){
@@ -282,7 +295,7 @@ function home(){
       if(recs.length) body += `<div class="sechead"><h2>Recommended for you</h2><span class="note">from your activity</span></div><div class="carou">${recs.map(ccard).join('')}</div>`;
     }
     const smalls=ranked(PRODUCTS.filter(p=>p.small)).slice(0,4);
-    body += `<div class="sechead"><h2>Small businesses we love</h2><span class="note">why? →</span></div>
+    body += `<div class="sechead"><h2>Small businesses we love</h2><button class="note" id="whynote">why? →</button></div>
       <div class="carou">${smalls.map(ccard).join('')}</div>`;
     CATS.forEach(([m,label])=>{
       body += `<div class="sechead"><h2>Popular in ${label}</h2></div><div class="carou">${cat(m).map(ccard).join('')}</div>`;
@@ -292,23 +305,39 @@ function home(){
     body += `<div class="sechead"><h2>${label}</h2><span class="note">small brands first</span></div>
       <div class="list">${cat(activeMkt).map(lrow).join('')}</div>`;
   }
-  screen.innerHTML = heroHTML() + marketsHTML() + body +
+  return body;
+}
+function renderHomeBody(qv){
+  document.getElementById('homebody').innerHTML=homeBodyHTML(qv);
+  document.querySelectorAll('#homebody [data-id]').forEach(el=>el.onclick=()=>detail(el.dataset.id));
+  const w=document.getElementById('whynote');
+  if(w) w.onclick=()=>toast("Small independent brands rank first when quality matches — that's the point of Guardi.");
+}
+function home(){
+  screenEl.scrollTop=0;
+  screenEl.innerHTML = heroHTML() + marketsHTML() + `<div id="homebody"></div>` +
     `<p class="foot">Departments are ordered by market size. Small brands rank first inside each — that's the point. Guardi aggregates cited third-party sources (EWG, CSPI, FDA, peer-reviewed) and reports what they say.<br><br><b style="color:var(--ink-soft)">Prototype · sample data for demonstration.</b></p>`;
+  renderHomeBody("");
   document.getElementById('scan').onclick=scan;
-  screen.querySelectorAll('[data-id]').forEach(el=>el.onclick=()=>detail(el.dataset.id));
-  screen.querySelectorAll('[data-m]').forEach(el=>el.onclick=()=>{activeMkt=el.dataset.m;home();});
+  const q=document.getElementById('q');
+  q.oninput=()=>renderHomeBody(q.value.trim());
+  screenEl.querySelectorAll('[data-m]').forEach(el=>el.onclick=()=>{activeMkt=el.dataset.m;home();});
 }
 
 function scan(){
-  const ov=document.getElementById('scanning'); ov.classList.add('show');
-  const pool=PRODUCTS.filter(p=>p.score<60); const pick=pool[Math.floor(Math.random()*pool.length)];
+  const ov=document.getElementById('scanning');
+  if(ov.classList.contains('show')) return;
+  ov.classList.add('show');
+  activeMkt="all";
+  let pool=PRODUCTS.filter(p=>p.score<60); if(!pool.length) pool=PRODUCTS;
+  const pick=pool[Math.floor(Math.random()*pool.length)];
   setTimeout(()=>{ov.classList.remove('show'); detail(pick.id);},1500);
 }
 
 function detail(id){
-  const p=PRODUCTS.find(x=>x.id===id); if(!p)return; record(id); window.scrollTo(0,0);
+  const p=PRODUCTS.find(x=>x.id===id); if(!p)return; record(id); screenEl.scrollTop=0;
   const b=band(p.score),R=41,C=2*Math.PI*R,off=C*(1-p.score/100);
-  screen.innerHTML=`<button class="back" id="back">‹ Back</button>
+  screenEl.innerHTML=`<button class="back" id="back">‹ Back</button>
   <div class="dhero"><div class="th" style="background:${p.tint}">${p.emoji}</div>
     <div><h1>${p.name}</h1><div class="ct">${p.small?'<span class="tagsm" style="color:var(--brand-ink);font-weight:700">✦ Small business</span>':p.brand+' · brand'}</div></div></div>
   <div class="scorewrap"><div class="ring"><svg width="92" height="92" viewBox="0 0 92 92">
@@ -322,10 +351,16 @@ function detail(id){
   <div class="swap"><span class="lbl">✦ Guardi recommends a small brand</span>
     <div class="b"><div class="th">${p.swap.emoji}</div><div style="flex:1"><div class="nm">${p.swap.name}</div><div class="why">${p.swap.why}</div></div>
       <span class="scorepill mono" style="background:var(--surface);color:var(--good)">${p.swap.score}</span></div>
-    <button class="buy" onclick="alert('In the real app this opens the seller — Guardi earns a small affiliate cut. No inventory, ever.')">Find it &amp; buy <small>· affiliate</small></button>
+    <button class="buy" onclick="toast('In the real app this opens the seller — Guardi earns a small affiliate cut. No inventory, ever.')">Find it &amp; buy <small>· affiliate</small></button>
   </div>`:`<div class="goodnote"><b>You're good.</b> Nothing to flag — a genuinely clean choice.</div>`}
   <p class="disc">Sample data for this prototype. Real Guardi cites live third-party sources for every claim.</p><div style="height:14px"></div>`;
-  document.getElementById('back').onclick=home;
+  const bk=document.getElementById('back');
+  bk.onclick=home;
+  bk.focus({preventScroll:true});
 }
+document.getElementById('nav-home').onclick=home;
+document.getElementById('nav-camera').onclick=scan;
+document.getElementById('nav-saved').onclick=()=>toast("Saved items are coming soon");
+document.getElementById('nav-you').onclick=()=>toast("Profiles are coming soon");
 home();
 </script>
