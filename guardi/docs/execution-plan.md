@@ -80,6 +80,18 @@
 
 ---
 
+### Data & availability strategy (reference)
+
+| Need | Source | Cost / access | When |
+|---|---|---|---|
+| Real products, ingredients, additives, scores | **Open Food Facts** | Free, open API, no key | Days 1–30 (real backend) |
+| Real nearby stores by zip/geo (launch: NYC) | **OpenStreetMap / Overpass** + browser Geolocation | Free, no key | Days 1–30 |
+| Zip → coordinates | **Nominatim** (OSM) | Free | Days 1–30 |
+| True local *availability* + checkout | **Instacart Platform API** (or DoorDash/Gopuff/Amazon Fresh) | Partnership-gated, apply; enterprise relationship | Stage 2 / post-validation |
+| ~~Uber Eats / Grubhub for inventory~~ | Restaurant-heavy, thin grocery, partner-only | Deprioritized | — |
+
+**Rule:** free public data (Open Food Facts + OSM) powers the product now. Real per-store shelf availability does NOT exist as a free API — it comes via a delivery-platform **partnership** (Instacart is the realistic grocery door), which also reframes Instacart as a *data/fulfillment* partner, not just a checkout link. Never scrape delivery-app catalogs (ToS + legal + fragile).
+
 ## 5. Days 61-90 — "Decide the Future"
 
 **Goal:** Fork-in-the-road decisions, backed by data.
