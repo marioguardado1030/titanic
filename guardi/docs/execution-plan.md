@@ -92,6 +92,8 @@
 
 **Rule:** free public data (Open Food Facts + OSM) powers the product now. Real per-store shelf availability does NOT exist as a free API — it comes via a delivery-platform **partnership** (Instacart is the realistic grocery door), which also reframes Instacart as a *data/fulfillment* partner, not just a checkout link. Never scrape delivery-app catalogs (ToS + legal + fragile).
 
+**NYC pilot candidate — Fairway Market.** Iconic NYC gourmet grocer; shopper base = health-conscious/label-reading (bullseye). Now a small chain (~5 stores, owned by Village Super Market/Wakefern after two bankruptcies) — nimble and approachable for a pilot, limited reach. Its online store (`fairwaymarket.com/sm/...rsid/4000`) appears to run on **Mercatus** (Instacart-owned) with per-store catalogs — meaning even indie NYC grocers ride Instacart infrastructure. Implication: one Instacart/Mercatus partnership could unlock many local catalogs at once, rather than store-by-store deals. Direct pitch to Fairway = founder's retail-media BD; catalog access = via the Instacart/Mercatus rails, not scraping (site returns 403 to bots).
+
 ## 5. Days 61-90 — "Decide the Future"
 
 **Goal:** Fork-in-the-road decisions, backed by data.
