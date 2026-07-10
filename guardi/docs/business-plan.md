@@ -70,6 +70,21 @@ Guardi's aggregator-with-citations model sidesteps the "no manufacturer money" t
 | Home screen | Scan-only utility | Browsable, discovery-oriented |
 | Scale | ~50-85M users (estimate) | Pre-launch |
 
+**The broader field (reality check).** Yuka is the giant, but the scanner category is crowded — and, importantly, the "AI vision + cleaner swaps + plain-English" angle is already shipping:
+
+| App | Position | Overlap |
+|---|---|---|
+| CheckIt AI | Real-time visual AI scan (no barcode), AR shelf, recall alerts | High — same "photograph anything" pitch |
+| Olive | Ultra-processed detection + cleaner-swap suggestions | High — the swaps too |
+| Gud For Us | Photo scan, plain-language, personal profile | Medium-high |
+| Fooducate, Trash Panda | Food grades + "what the research says" | Medium (citation-style) |
+| Think Dirty, INCI Beauty, EWG Healthy Living | Cosmetics/beauty scanners | Category overlap (beauty) |
+| Buycott | Scan → parent company / values alignment | Values angle |
+
+**Honest implication:** the scanner itself is **table stakes, not the moat** — CheckIt AI, Olive and Gud For Us already do AI-vision scanning with swaps and plain-English readouts. What **none** of them are is a **marketplace**: none connect buyers to small sellers, rank small brands first, or monetize via verified brand ads. Guardi's defensible position is therefore the **commerce + small-brand engine + verified ads**, not "better scanning" — which aligns exactly with the founder's retail-media expertise. Positioning must lead with the marketplace/values-commerce story; the scanner is the acquisition hook, not the differentiator.
+
+**Build-vs-buy — don't build the database.** The product/ingredient data is a solved, free problem: **Open Food Facts** (2.8M+ products, additives, NOVA/Nutri-Score, allergens) with an official JS SDK plus Python/Dart wrappers and an AI service (Robotoff). Guardi builds the *experience and the commerce layer* on top; it does not rebuild the food database.
+
 Secondary reference points: Ground News proves aggregator-with-citations can be a standalone trusted brand (in news). Thrive Market proves a curated clean-label marketplace has commercial demand, though as a closed-catalog retailer, not a scanner. Amazon/Walmart marketplace mechanics (seller fees, sponsored placement, verified selling) are the model for Stages 2-3 — and the founder's day job.
 
 ---
