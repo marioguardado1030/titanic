@@ -4,143 +4,86 @@
 :root{
   --bg:#F4F3F0; --surface:#FFFFFF; --surface-2:#ECEAE4; --ink:#15151E; --ink-soft:#5B5B68;
   --line:#E5E2DB; --brand:#3A40D6; --brand-ink:#3A40D6; --brand-soft:#E5E6FB;
-  --accent:#FF6A4D; --good:#1F9E63; --warn:#DC9227; --bad:#E14A3B;
-  --shadow:0 1px 2px rgba(21,21,30,.05),0 10px 30px rgba(21,21,30,.09);
-  --radius:18px;
+  --accent:#FF6A4D; --good:#1F9E63; --warn:#DC9227; --bad:#E14A3B; --spon:#8A6D00; --spon-bg:#FBF1D0;
+  --shadow:0 1px 2px rgba(21,21,30,.05),0 10px 30px rgba(21,21,30,.09); --radius:18px;
 }
-@media (prefers-color-scheme:dark){
-  :root{--bg:#0B0B11; --surface:#14141C; --surface-2:#1D1D28; --ink:#ECECF4; --ink-soft:#9A9AA9;
-    --line:#26262F; --brand:#8B90FF; --brand-ink:#9EA2FF; --brand-soft:#1C1D3C;
-    --accent:#FF7D62; --good:#3DB679; --warn:#E6A63E; --bad:#EC6552;
-    --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 34px rgba(0,0,0,.5);}
-}
-:root[data-theme="light"]{--bg:#F4F3F0; --surface:#FFFFFF; --surface-2:#ECEAE4; --ink:#15151E; --ink-soft:#5B5B68;
-  --line:#E5E2DB; --brand:#3A40D6; --brand-ink:#3A40D6; --brand-soft:#E5E6FB;
-  --accent:#FF6A4D; --good:#1F9E63; --warn:#DC9227; --bad:#E14A3B;
-  --shadow:0 1px 2px rgba(21,21,30,.05),0 10px 30px rgba(21,21,30,.09);}
-:root[data-theme="dark"]{--bg:#0B0B11; --surface:#14141C; --surface-2:#1D1D28; --ink:#ECECF4; --ink-soft:#9A9AA9;
-  --line:#26262F; --brand:#8B90FF; --brand-ink:#9EA2FF; --brand-soft:#1C1D3C;
-  --accent:#FF7D62; --good:#3DB679; --warn:#E6A63E; --bad:#EC6552;
-  --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 34px rgba(0,0,0,.5);}
+@media (prefers-color-scheme:dark){:root{--bg:#0B0B11;--surface:#14141C;--surface-2:#1D1D28;--ink:#ECECF4;--ink-soft:#9A9AA9;--line:#26262F;--brand:#8B90FF;--brand-ink:#9EA2FF;--brand-soft:#1C1D3C;--accent:#FF7D62;--good:#3DB679;--warn:#E6A63E;--bad:#EC6552;--spon:#E7C05A;--spon-bg:#2A2410;--shadow:0 1px 2px rgba(0,0,0,.5),0 12px 34px rgba(0,0,0,.5);}}
+:root[data-theme="light"]{--bg:#F4F3F0;--surface:#FFFFFF;--surface-2:#ECEAE4;--ink:#15151E;--ink-soft:#5B5B68;--line:#E5E2DB;--brand:#3A40D6;--brand-ink:#3A40D6;--brand-soft:#E5E6FB;--accent:#FF6A4D;--good:#1F9E63;--warn:#DC9227;--bad:#E14A3B;--spon:#8A6D00;--spon-bg:#FBF1D0;--shadow:0 1px 2px rgba(21,21,30,.05),0 10px 30px rgba(21,21,30,.09);}
+:root[data-theme="dark"]{--bg:#0B0B11;--surface:#14141C;--surface-2:#1D1D28;--ink:#ECECF4;--ink-soft:#9A9AA9;--line:#26262F;--brand:#8B90FF;--brand-ink:#9EA2FF;--brand-soft:#1C1D3C;--accent:#FF7D62;--good:#3DB679;--warn:#E6A63E;--bad:#EC6552;--spon:#E7C05A;--spon-bg:#2A2410;--shadow:0 1px 2px rgba(0,0,0,.5),0 12px 34px rgba(0,0,0,.5);}
 *{box-sizing:border-box} html,body{margin:0}
-body{background:var(--bg); color:var(--ink); min-height:100vh; display:flex; justify-content:center;
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.5;}
+body{background:var(--bg);color:var(--ink);min-height:100vh;display:flex;justify-content:center;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
 .mono{font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace}
 button{font:inherit;color:inherit;cursor:pointer;border:none;background:none;text-align:left}
 a{color:inherit}
-.phone{width:100%; max-width:432px; min-height:100vh; min-height:100dvh; background:var(--bg); position:relative; display:flex; flex-direction:column; overflow:hidden}
-@media(min-width:480px){body{padding:24px 16px; align-items:flex-start}
-  .phone{min-height:auto; height:calc(100vh - 48px); max-height:920px; border-radius:36px; box-shadow:var(--shadow); border:1px solid var(--line)}}
-.screen{flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch}
-.screen::-webkit-scrollbar{width:0}
-
-/* header / hero */
-.hero{padding:22px 20px 16px; background:radial-gradient(120% 80% at 85% -12%, var(--brand-soft) 0%, transparent 52%), linear-gradient(180deg,var(--surface),var(--bg)); border-bottom:1px solid var(--line)}
-.brandrow{display:flex; align-items:center; justify-content:space-between}
-.brandmark{display:flex; align-items:center; gap:9px}
-.shield{width:26px;height:26px}
-.wordmark{font-weight:750; font-size:20px; letter-spacing:-.03em}
-.wordmark i{color:var(--brand-ink); font-style:normal}
+.phone{width:100%;max-width:432px;min-height:100vh;min-height:100dvh;background:var(--bg);position:relative;display:flex;flex-direction:column;overflow:hidden}
+@media(min-width:480px){body{padding:24px 16px;align-items:flex-start}.phone{min-height:auto;height:calc(100vh - 48px);max-height:920px;border-radius:36px;box-shadow:var(--shadow);border:1px solid var(--line)}}
+.screen{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}.screen::-webkit-scrollbar{width:0}
+.hero{padding:22px 20px 16px;background:radial-gradient(120% 80% at 85% -12%, var(--brand-soft) 0%, transparent 52%),linear-gradient(180deg,var(--surface),var(--bg));border-bottom:1px solid var(--line)}
+.brandrow{display:flex;align-items:center;justify-content:space-between}
+.brandmark{display:flex;align-items:center;gap:9px}.shield{width:26px;height:26px}
+.wordmark{font-weight:750;font-size:20px;letter-spacing:-.03em}.wordmark i{color:var(--brand-ink);font-style:normal}
 .acct{width:33px;height:33px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:15px;border:1px solid var(--line)}
-.h1{font-size:26px; line-height:1.08; letter-spacing:-.033em; font-weight:800; margin:16px 0 0; text-wrap:balance}
-.h1 em{font-style:normal; color:var(--brand-ink)}
-.sub{margin:8px 0 0; color:var(--ink-soft); font-size:13.5px; max-width:34ch}
-.scanhero{margin:16px 0 0; width:100%; display:flex; align-items:center; gap:13px; background:var(--brand); color:#fff; padding:15px 16px; border-radius:15px; box-shadow:0 8px 20px rgba(58,64,214,.38); box-shadow:0 8px 20px color-mix(in srgb,var(--brand) 38%, transparent); transition:transform .08s ease, filter .15s}
-.scanhero:active{transform:translateY(1px)} .scanhero:hover{filter:brightness(1.06)}
+.h1{font-size:26px;line-height:1.08;letter-spacing:-.033em;font-weight:800;margin:16px 0 0;text-wrap:balance}.h1 em{font-style:normal;color:var(--brand-ink)}
+.sub{margin:8px 0 0;color:var(--ink-soft);font-size:13.5px;max-width:34ch}
+.scanhero{margin:16px 0 0;width:100%;display:flex;align-items:center;gap:13px;background:var(--brand);color:#fff;padding:15px 16px;border-radius:15px;box-shadow:0 8px 20px rgba(58,64,214,.38);box-shadow:0 8px 20px color-mix(in srgb,var(--brand) 38%,transparent);transition:transform .08s ease,filter .15s}
+.scanhero:active{transform:translateY(1px)}.scanhero:hover{filter:brightness(1.06)}
 .scanhero .ic{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
-.scanhero b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.01em}
-.scanhero span{display:block;font-size:12px;opacity:.85}
-/* compact search (smaller) */
-.searchmini{margin:10px 0 0; display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:9px 12px}
-.searchmini input{border:none;background:none;outline:none;flex:1;font-size:13px;color:var(--ink)}
-.searchmini input::placeholder{color:var(--ink-soft)}
-.searchmini .cam{font-size:15px;color:var(--brand-ink)}
-/* slim step line (smaller) */
-.miniflow{margin:11px 0 0; display:flex; align-items:center; gap:8px; font-size:11.5px; color:var(--ink-soft); font-weight:600}
-.miniflow b{color:var(--ink);font-weight:650} .miniflow .sep{opacity:.45}
-
-/* department nav */
-.markets{display:flex; gap:8px; overflow-x:auto; padding:14px 20px 12px; scrollbar-width:none; position:sticky; top:0; background:var(--bg); z-index:5; border-bottom:1px solid var(--line)}
-.markets::-webkit-scrollbar{display:none}
-.mkt{flex:none; display:flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:12px 15px 12px 12px; font-size:12.5px; font-weight:650; white-space:nowrap}
-.mkt.on{background:var(--ink); color:var(--bg); border-color:var(--ink)}
-.mkt .e{font-size:13px}
-
-/* section + carousel */
-.sechead{display:flex; align-items:baseline; justify-content:space-between; padding:20px 20px 11px}
-.sechead h2{font-size:15.5px; letter-spacing:-.02em; font-weight:750; margin:0}
-.sechead .note{font-size:12px; color:var(--brand-ink); font-weight:650}
-.carou{display:flex; gap:11px; overflow-x:auto; padding:1px 20px 6px; scroll-snap-type:x mandatory; scrollbar-width:none}
-.carou::-webkit-scrollbar{display:none}
-.cc{flex:none; width:150px; scroll-snap-align:start}
-.feat{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:0; overflow:hidden; box-shadow:var(--shadow); transition:transform .1s ease, border-color .15s; width:100%; display:block}
-.feat:hover{transform:translateY(-2px); border-color:var(--brand)}
-.feat .top{aspect-ratio:1.55; display:flex; align-items:center; justify-content:center; font-size:34px; position:relative}
-.feat .body{padding:10px 12px 13px}
-.feat .nm{font-weight:670; font-size:13.5px; letter-spacing:-.01em; line-height:1.22}
-.feat .ct{font-size:11px; color:var(--ink-soft); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.feat .ct.sm{color:var(--brand-ink); font-weight:700}
-.badge{position:absolute; top:8px; left:8px; display:inline-flex; align-items:center; gap:4px; background:var(--brand-ink); color:#fff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:999px}
-.scorepill{display:inline-flex; align-items:center; gap:6px; margin-top:9px; font-size:12px; font-weight:700; padding:3px 9px 3px 8px; border-radius:999px; background:var(--surface-2)}
-.dot{width:8px;height:8px;border-radius:50%}
-
-/* vertical list (category view) */
+.scanhero b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.01em}.scanhero span{display:block;font-size:12px;opacity:.85}
+.searchmini{margin:10px 0 0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:9px 12px}
+.searchmini input{border:none;background:none;outline:none;flex:1;font-size:13px;color:var(--ink)}.searchmini input::placeholder{color:var(--ink-soft)}
+.miniflow{margin:11px 0 0;display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-soft);font-weight:600}.miniflow b{color:var(--ink);font-weight:650}.miniflow .sep{opacity:.45}
+.markets{display:flex;gap:8px;overflow-x:auto;padding:14px 20px 12px;scrollbar-width:none;position:sticky;top:0;background:var(--bg);z-index:5;border-bottom:1px solid var(--line)}.markets::-webkit-scrollbar{display:none}
+.mkt{flex:none;display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:12px 15px 12px 12px;font-size:12.5px;font-weight:650;white-space:nowrap}.mkt.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.mkt .e{font-size:13px}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;padding:20px 20px 11px}.sechead h2{font-size:15.5px;letter-spacing:-.02em;font-weight:750;margin:0}.sechead .note{font-size:12px;color:var(--brand-ink);font-weight:650}
+.carou{display:flex;gap:11px;overflow-x:auto;padding:1px 20px 6px;scroll-snap-type:x mandatory;scrollbar-width:none}.carou::-webkit-scrollbar{display:none}.cc{flex:none;width:150px;scroll-snap-align:start}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:0;overflow:hidden;box-shadow:var(--shadow);transition:transform .1s ease,border-color .15s;width:100%;display:block}.feat:hover{transform:translateY(-2px);border-color:var(--brand)}
+.feat .top{aspect-ratio:1.55;display:flex;align-items:center;justify-content:center;font-size:34px;position:relative}.feat .body{padding:10px 12px 13px}
+.feat .nm{font-weight:670;font-size:13.5px;letter-spacing:-.01em;line-height:1.22}.feat .ct{font-size:11px;color:var(--ink-soft);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.feat .ct.sm{color:var(--brand-ink);font-weight:700}
+.badge{position:absolute;top:8px;left:8px;display:inline-flex;align-items:center;gap:4px;background:var(--brand-ink);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px}
+.scorepill{display:inline-flex;align-items:center;gap:6px;margin-top:9px;font-size:12px;font-weight:700;padding:3px 9px 3px 8px;border-radius:999px;background:var(--surface-2)}.dot{width:8px;height:8px;border-radius:50%}
 .list{padding:6px 20px 0}
-.row{display:flex; align-items:center; gap:13px; background:var(--surface); border:1px solid var(--line); border-radius:15px; padding:11px 13px; margin-bottom:10px; box-shadow:var(--shadow); transition:transform .08s ease, border-color .15s; width:100%}
-.row:hover{transform:translateY(-1px); border-color:var(--brand)}
-.row .th{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:25px;flex:none}
-.row .mid{flex:1;min-width:0}
-.row .nm{font-weight:650;font-size:14px;letter-spacing:-.01em;line-height:1.2}
-.row .ct{font-size:11.5px;color:var(--ink-soft);margin-top:3px}
-.tagsm{color:var(--brand-ink);font-weight:700}
-.row .sc{display:flex;flex-direction:column;align-items:center;gap:1px;flex:none}
-.row .sc b{font-size:19px;letter-spacing:-.02em;line-height:1} .row .sc small{font-size:9px;color:var(--ink-soft)}
-.foot{padding:24px 20px 30px; color:var(--ink-soft); font-size:11.5px; line-height:1.5; text-align:center}
-
-/* detail */
+.row{display:flex;align-items:center;gap:13px;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:11px 13px;margin-bottom:10px;box-shadow:var(--shadow);transition:transform .08s ease,border-color .15s;width:100%;position:relative}.row:hover{transform:translateY(-1px);border-color:var(--brand)}
+.row.ad{border-color:var(--spon)}
+.row .th{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:25px;flex:none}.row .mid{flex:1;min-width:0}
+.row .nm{font-weight:650;font-size:14px;letter-spacing:-.01em;line-height:1.2}.row .ct{font-size:11.5px;color:var(--ink-soft);margin-top:3px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.tagsm{color:var(--brand-ink);font-weight:700}.tagorg{color:var(--good);font-weight:700}
+.adlbl{display:inline-flex;align-items:center;gap:4px;background:var(--spon-bg);color:var(--spon);font-size:9.5px;font-weight:800;letter-spacing:.04em;padding:2px 7px;border-radius:6px;text-transform:uppercase}
+.row .sc{display:flex;flex-direction:column;align-items:center;gap:1px;flex:none}.row .sc b{font-size:19px;letter-spacing:-.02em;line-height:1}.row .sc small{font-size:9px;color:var(--ink-soft)}
+.slotn{position:absolute;top:-7px;left:11px;background:var(--bg);color:var(--ink-soft);font-size:9px;font-weight:700;padding:0 5px;border-radius:4px}
+.foot{padding:24px 20px 30px;color:var(--ink-soft);font-size:11.5px;line-height:1.5;text-align:center}
 .back{display:inline-flex;align-items:center;gap:7px;color:var(--ink-soft);font-weight:600;font-size:14px;padding:16px 20px 4px}
-.dhero{display:flex; gap:15px; align-items:center; padding:4px 20px 4px}
-.dhero .th{width:74px;height:74px;border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:33px;flex:none}
-.dhero h1{margin:0;font-size:19px;letter-spacing:-.025em;line-height:1.18;text-wrap:balance}
-.dhero .ct{color:var(--ink-soft);font-size:13px;margin-top:5px}
-.scorewrap{display:flex; align-items:center; gap:18px; margin:18px 20px 4px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
-.ring{position:relative; width:92px; height:92px; flex:none}
-.ring svg{transform:rotate(-90deg)}
-.ring .num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center}
-.ring .num b{font-size:28px; line-height:1; letter-spacing:-.02em}
-.ring .num small{font-size:10px; color:var(--ink-soft); margin-top:2px}
-.verdict b{font-size:16px} .verdict p{margin:5px 0 0; color:var(--ink-soft); font-size:13px; line-height:1.45}
-.dsec{margin:22px 20px 0}
-.dsec h2{font-size:12.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 12px; font-weight:750}
-.flag{background:var(--surface); border:1px solid var(--line); border-radius:15px; padding:14px; margin-bottom:10px; box-shadow:var(--shadow)}
-.flag .r{display:flex; align-items:center; gap:9px; justify-content:space-between}
-.flag .nm{font-weight:660; font-size:14px; letter-spacing:-.01em}
-.flag p{margin:8px 0 10px; font-size:13px; line-height:1.5}
+.dhero{display:flex;gap:15px;align-items:center;padding:4px 20px 4px}.dhero .th{width:74px;height:74px;border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:33px;flex:none}
+.dhero h1{margin:0;font-size:19px;letter-spacing:-.025em;line-height:1.18;text-wrap:balance}.dhero .ct{color:var(--ink-soft);font-size:13px;margin-top:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.scorewrap{display:flex;align-items:center;gap:18px;margin:18px 20px 4px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.ring{position:relative;width:92px;height:92px;flex:none}.ring svg{transform:rotate(-90deg)}.ring .num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}.ring .num b{font-size:28px;line-height:1;letter-spacing:-.02em}.ring .num small{font-size:10px;color:var(--ink-soft);margin-top:2px}
+.verdict b{font-size:16px}.verdict p{margin:5px 0 0;color:var(--ink-soft);font-size:13px;line-height:1.45}
+.dsec{margin:22px 20px 0}.dsec h2{font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 12px;font-weight:750}
+.flag{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:14px;margin-bottom:10px;box-shadow:var(--shadow)}
+.flag .r{display:flex;align-items:center;gap:9px;justify-content:space-between}.flag .nm{font-weight:660;font-size:14px;letter-spacing:-.01em}.flag p{margin:8px 0 10px;font-size:13px;line-height:1.5}
 .sev{font-size:11px;font-weight:750;padding:3px 9px;border-radius:8px;white-space:nowrap}
-.source{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-soft)}
-.source a{color:var(--brand-ink);text-decoration:none;font-weight:650;border-bottom:1px solid var(--brand-soft)}
-.swap{background:linear-gradient(180deg,var(--brand-soft),var(--surface)); border:1px solid var(--brand); border-radius:var(--radius); padding:16px; margin:8px 20px 0; box-shadow:var(--shadow)}
-.swap .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-ink);font-weight:750}
-.swap .b{display:flex;gap:13px;align-items:center;margin-top:11px}
-.swap .th{width:52px;height:52px;font-size:24px;border-radius:13px;background:var(--surface);display:flex;align-items:center;justify-content:center;flex:none}
-.swap .nm{font-weight:680;font-size:14.5px} .swap .why{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
-.buy{margin-top:13px;width:100%;background:var(--brand);color:#fff;padding:13px;border-radius:12px;font-weight:680;font-size:14.5px;display:flex;align-items:center;justify-content:center;gap:8px}
-.buy small{opacity:.8;font-weight:500}
-.goodnote{margin:16px 20px 0; padding:15px; background:var(--surface); border:1px solid var(--line); border-radius:15px; font-size:13.5px; color:var(--ink-soft); box-shadow:var(--shadow)}
-.goodnote b{color:var(--good)}
-.disc{margin:22px 20px 10px; font-size:11.5px; color:var(--ink-soft); line-height:1.5; text-align:center}
-.nav{display:flex; border-top:1px solid var(--line); background:var(--surface)}
-.nav button{flex:1; padding:11px 0 max(15px, env(safe-area-inset-bottom)); display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10.5px; color:var(--ink-soft); font-weight:600}
-.nav button.on{color:var(--brand-ink)} .nav .ic{font-size:18px;line-height:1}
-.toast{position:absolute; left:50%; bottom:86px; transform:translateX(-50%) translateY(8px); background:var(--ink); color:var(--bg); font-size:13px; font-weight:600; padding:11px 18px; border-radius:999px; box-shadow:var(--shadow); opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; z-index:30; max-width:85%; text-align:center}
-.toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
-.scanning{position:absolute; inset:0; background:var(--bg); display:none; flex-direction:column; align-items:center; justify-content:center; gap:22px; z-index:20}
-.scanning.show{display:flex}
-.reticle{width:184px;height:184px;border-radius:24px;position:relative;border:2px solid var(--brand-soft)}
-.reticle::before{content:"";position:absolute;left:10px;right:10px;top:10px;height:2px;background:var(--brand);border-radius:2px;box-shadow:0 0 14px var(--brand);animation:scan 1.4s ease-in-out infinite}
-@keyframes scan{0%{top:10px}50%{top:162px}100%{top:10px}}
-.scanning p{color:var(--ink-soft);font-size:14px;font-weight:600}
-@media (prefers-reduced-motion:reduce){.reticle::before{animation:none;top:50%}}
+.source{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-soft)}.source a{color:var(--brand-ink);text-decoration:none;font-weight:650;border-bottom:1px solid var(--brand-soft)}
+.swap{background:linear-gradient(180deg,var(--brand-soft),var(--surface));border:1px solid var(--brand);border-radius:var(--radius);padding:16px;margin:8px 20px 0;box-shadow:var(--shadow)}
+.swap .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-ink);font-weight:750}.swap .b{display:flex;gap:13px;align-items:center;margin-top:11px}
+.swap .th{width:52px;height:52px;font-size:24px;border-radius:13px;background:var(--surface);display:flex;align-items:center;justify-content:center;flex:none}.swap .nm{font-weight:680;font-size:14.5px}.swap .why{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+.buy{margin-top:13px;width:100%;background:var(--brand);color:#fff;padding:13px;border-radius:12px;font-weight:680;font-size:14.5px;display:flex;align-items:center;justify-content:center;gap:8px}.buy small{opacity:.8;font-weight:500}
+.savebtn{margin:14px 20px 0;width:calc(100% - 40px);background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:12px;border-radius:12px;font-weight:650;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px}
+.goodnote{margin:16px 20px 0;padding:15px;background:var(--surface);border:1px solid var(--line);border-radius:15px;font-size:13.5px;color:var(--ink-soft);box-shadow:var(--shadow)}.goodnote b{color:var(--good)}
+.disc{margin:22px 20px 10px;font-size:11.5px;color:var(--ink-soft);line-height:1.5;text-align:center}
+.nav{display:flex;border-top:1px solid var(--line);background:var(--surface)}.nav button{flex:1;padding:11px 0 max(15px,env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;color:var(--ink-soft);font-weight:600}.nav button.on{color:var(--brand-ink)}.nav .ic{font-size:18px;line-height:1}
+.scanning{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px;z-index:20}.scanning.show{display:flex}
+.reticle{width:184px;height:184px;border-radius:24px;position:relative;border:2px solid var(--brand-soft)}.reticle::before{content:"";position:absolute;left:10px;right:10px;top:10px;height:2px;background:var(--brand);border-radius:2px;box-shadow:0 0 14px var(--brand);animation:scan 1.4s ease-in-out infinite}
+@keyframes scan{0%{top:10px}50%{top:162px}100%{top:10px}}.scanning p{color:var(--ink-soft);font-size:14px;font-weight:600}@media (prefers-reduced-motion:reduce){.reticle::before{animation:none;top:50%}}
+.toast{position:absolute;left:50%;bottom:86px;transform:translateX(-50%) translateY(8px);background:var(--ink);color:var(--bg);font-size:13px;font-weight:600;padding:11px 18px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:30;max-width:85%;text-align:center}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* You / dashboard */
+.phead{padding:22px 20px 6px}.phead h1{margin:0;font-size:22px;letter-spacing:-.03em}.phead p{margin:5px 0 0;color:var(--ink-soft);font-size:13px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:16px 20px 4px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:14px;box-shadow:var(--shadow)}
+.stat b{font-size:24px;letter-spacing:-.02em;display:block}.stat span{font-size:11.5px;color:var(--ink-soft);font-weight:600}
+.panel{margin:16px 20px 0;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:var(--shadow)}
+.panel h3{margin:0 0 3px;font-size:14px;letter-spacing:-.01em}.panel p{margin:0;font-size:12.5px;color:var(--ink-soft);line-height:1.45}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.switch{width:46px;height:27px;border-radius:999px;background:var(--surface-2);position:relative;flex:none;transition:background .18s;border:1px solid var(--line)}
+.switch.on{background:var(--brand)}.switch::after{content:"";position:absolute;top:2px;left:2px;width:21px;height:21px;border-radius:50%;background:#fff;transition:transform .18s;box-shadow:0 1px 3px rgba(0,0,0,.3)}.switch.on::after{transform:translateX(19px)}
 :focus-visible{outline:2.5px solid var(--brand);outline-offset:2px;border-radius:6px}
 </style>
 
@@ -154,213 +97,153 @@ a{color:inherit}
   </nav>
   <div class="scanning" id="scanning"><div class="reticle"></div><p>Reading the label…</p></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <input type="file" id="cam" accept="image/*" capture="environment" style="display:none" aria-hidden="true">
 </div>
 
 <script>
 const SHIELD=`<svg class="shield" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5 4 5.2v6.3c0 4.9 3.3 8.4 8 9.9 4.7-1.5 8-5 8-9.9V5.2L12 2.5Z" fill="var(--brand)"/><path d="m8.4 12 2.5 2.6L16 9.3" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const SEV={high:{lbl:"Avoid",bg:"var(--bad)",fg:"#fff"},med:{lbl:"Caution",bg:"var(--warn)",fg:"#3a2a08"},low:{lbl:"Minor",bg:"var(--surface-2)",fg:"var(--ink-soft)"},good:{lbl:"Good",bg:"var(--good)",fg:"#fff"}};
 function band(s){if(s>=75)return{c:"var(--good)",w:"Great choice"};if(s>=55)return{c:"var(--warn)",w:"So-so"};if(s>=40)return{c:"var(--warn)",w:"Be careful"};return{c:"var(--bad)",w:"Poor"};}
-
-// departments ordered by market size: Food > Consumer Goods > Beauty
 const MARKETS=[["all","✦","All"],["food","🍎","Food"],["goods","🧺","Consumer Goods"],["beauty","🧴","Beauty & Personal Care"]];
 const CATS=[["food","Food"],["goods","Consumer Goods"],["beauty","Beauty & Personal Care"]];
 
+// small:1 = independent (earns organic slots). sponsored:1 = enterprise advertiser (paid slots when monetization ON).
 const PRODUCTS=[
-  {id:"wildroot",small:1,mkt:"food",emoji:"🌰",tint:"#EBD9C4",brand:"Wildroot Foods",name:"Date & Almond Bar",score:88,
-    bottom:"Three ingredients you can pronounce. Whole-food energy, sweetened only by dates.",
-    flags:[{nm:"3 whole ingredients",sev:"good",txt:"Dates, almonds, sea salt. Nothing added, nothing to flag.",src:"USDA",url:"https://www.usda.gov"},
-           {nm:"Naturally high fiber",sev:"good",txt:"Fiber and healthy fats keep you full without a sugar crash.",src:"peer-reviewed",url:"https://pubmed.ncbi.nlm.nih.gov"}],swap:null},
-  {id:"sprout",small:1,mkt:"food",emoji:"🍼",tint:"#D7E8CF",brand:"Little Sprout",name:"Organic Baby Puffs",score:85,
-    bottom:"A rare clean pick for little ones — organic, no added sugar, no dyes.",
-    flags:[{nm:"No added sugar",sev:"good",txt:"Sweetness comes from real fruit and veg, not syrup.",src:"FDA labeling",url:"https://www.fda.gov"},
-           {nm:"Organic whole grains",sev:"good",txt:"Certified organic — no synthetic pesticides in the supply chain.",src:"USDA Organic",url:"https://www.usda.gov"}],swap:null},
-  {id:"honest",small:1,mkt:"food",emoji:"🫧",tint:"#CFE0F0",brand:"Honest Field",name:"Sparkling Botanical Tonic",score:81,
-    bottom:"Real botanicals, 4g of sugar, no dyes. A genuinely light everyday sparkling drink.",
-    flags:[{nm:"4g sugar",sev:"good",txt:"A fraction of a soda — a touch of real fruit.",src:"FDA labeling",url:"https://www.fda.gov"},
-           {nm:"Natural flavors (disclosed)",sev:"low",txt:"'Natural flavor' is broad; this brand publishes its sources — the trustworthy move.",src:"EWG",url:"https://www.ewg.org"}],swap:null},
-  {id:"cereal",small:0,mkt:"food",emoji:"🥣",tint:"#F3D9A6",brand:"MorningCrunch",name:"Choco Loops Kids Cereal",score:34,
-    bottom:"Mostly sugar and dyes dressed up with added vitamins. A cleaner bowl exists for the same price.",
-    flags:[{nm:"Red 40 + Yellow 5 (dyes)",sev:"high",txt:"Synthetic dyes linked in reviews to hyperactivity in some children.",src:"CSPI",url:"https://www.cspinet.org"},
-           {nm:"High-fructose corn syrup",sev:"high",txt:"13g added sugar per small serving — about 3 teaspoons.",src:"FDA labeling",url:"https://www.fda.gov"},
-           {nm:"BHT preservative",sev:"med",txt:"Petroleum-derived; restricted in parts of the EU and Japan.",src:"EWG",url:"https://www.ewg.org"}],
-    swap:{emoji:"🌾",name:"Little Sprout Whole-Grain O's",score:83,why:"Small brand: real whole grain, no dyes, a third of the sugar."}},
-  {id:"drink",small:0,mkt:"food",emoji:"🧃",tint:"#A9D3EE",brand:"Volt",name:"Blue Sports Drink",score:22,
-    bottom:"A soda in athletic clothing. Real electrolytes, but 34g sugar and a fuel-industry emulsifier.",
-    flags:[{nm:"Brominated vegetable oil",sev:"high",txt:"Banned in the EU, UK and Japan; the FDA moved to revoke it in 2024.",src:"FDA",url:"https://www.fda.gov"},
-           {nm:"34g added sugar",sev:"high",txt:"More sugar than a can of cola, sold as healthy hydration.",src:"FDA labeling",url:"https://www.fda.gov"}],
-    swap:{emoji:"🥥",name:"Honest Field Coconut Electrolyte",score:80,why:"Small brand: real electrolytes, no BVO, a quarter of the sugar."}},
-  {id:"bar",small:0,mkt:"food",emoji:"🍫",tint:"#D9C1A0",brand:"FitPro",name:"Cookie-Dough Protein Bar",score:51,
-    bottom:"Good protein, but the 'dough' flavor rides on artificial sweetener and sugar alcohols.",
-    flags:[{nm:"Sucralose",sev:"med",txt:"Zero-calorie sweetener; emerging research questions gut and metabolic effects.",src:"peer-reviewed",url:"https://pubmed.ncbi.nlm.nih.gov"},
-           {nm:"Sugar alcohols (maltitol)",sev:"med",txt:"Low-sugar on paper, but a common cause of bloating.",src:"CSPI",url:"https://www.cspinet.org"},
-           {nm:"20g protein",sev:"good",txt:"Legitimately high protein — the reason to reach for it.",src:"USDA",url:"https://www.usda.gov"}],
-    swap:{emoji:"🌰",name:"Wildroot Date & Almond Bar",score:88,why:"Small brand: whole-food protein & fiber, no sucralose."}},
-  {id:"noodle",small:0,mkt:"food",emoji:"🍜",tint:"#EEC7A0",brand:"QuickBowl",name:"Instant Noodles",score:29,
-    bottom:"Cheap and fast, but one bowl is most of a day's sodium plus a fuel-derived preservative.",
-    flags:[{nm:"1,820mg sodium",sev:"high",txt:"About 79% of a full day in one bowl — a real blood-pressure driver.",src:"FDA labeling",url:"https://www.fda.gov"},
-           {nm:"TBHQ preservative",sev:"med",txt:"Petroleum-derived; intake limits exist for a reason.",src:"EWG",url:"https://www.ewg.org"}],
-    swap:{emoji:"🍲",name:"Honest Field Miso Cup",score:69,why:"Small brand: real broth, ~40% less sodium, no TBHQ."}},
-  {id:"oats",small:0,mkt:"food",emoji:"🌾",tint:"#CFE0B4",brand:"Pantry Basics",name:"Plain Rolled Oats",score:96,
-    bottom:"One ingredient: oats. Whole grain, high fiber, no additives. This is what clean looks like.",
-    flags:[{nm:"100% whole grain",sev:"good",txt:"A single-ingredient food — nothing to flag.",src:"USDA",url:"https://www.usda.gov"},
-           {nm:"Beta-glucan fiber",sev:"good",txt:"Well-studied for lowering LDL cholesterol.",src:"peer-reviewed",url:"https://pubmed.ncbi.nlm.nih.gov"}],swap:null},
-
-  {id:"purehome",small:1,mkt:"goods",emoji:"🫧",tint:"#CFE7E4",brand:"PureHome",name:"Plant-Based Dish Soap",score:86,
-    bottom:"Cuts grease with coconut-derived cleaners, no synthetic fragrance or dye.",
-    flags:[{nm:"Plant-based surfactants",sev:"good",txt:"Cleans with coconut-derived agents instead of petroleum.",src:"EWG",url:"https://www.ewg.org"},
-           {nm:"No synthetic fragrance or dye",sev:"good",txt:"Skips the two things that make dish soap smell 'clean' but irritate skin.",src:"EWG",url:"https://www.ewg.org"}],swap:null},
-  {id:"sparkle",small:0,mkt:"goods",emoji:"🧴",tint:"#BFE0EE",brand:"SparkleClean",name:"All-Purpose Spray",score:38,
-    bottom:"Cuts grease, but the 'fresh scent' hides undisclosed chemicals and it uses a quat disinfectant.",
-    flags:[{nm:"'Fragrance' (undisclosed)",sev:"med",txt:"One word hiding dozens of chemicals; a top asthma and skin trigger.",src:"EWG",url:"https://www.ewg.org"},
-           {nm:"Quaternary ammonium (quats)",sev:"med",txt:"Disinfectant linked to asthma in frequent users; overkill for daily wiping.",src:"EWG",url:"https://www.ewg.org"},
-           {nm:"Dye",sev:"low",txt:"The blue color is cosmetic — it does nothing for cleaning.",src:"CSPI",url:"https://www.cspinet.org"}],
-    swap:{emoji:"🫧",name:"PureHome Plant-Based Spray",score:84,why:"Small brand: same grease-cutting, no quats, no synthetic fragrance."}},
-  {id:"laundry",small:0,mkt:"goods",emoji:"🧺",tint:"#D6D2EC",brand:"EverSoft",name:"Laundry Pods",score:41,
-    bottom:"Convenient, but pods pack synthetic fragrance, brighteners, and a contamination risk shoppers avoid.",
-    flags:[{nm:"'Fragrance'",sev:"med",txt:"Undisclosed scent chemicals that stay on skin-contact fabric all day.",src:"EWG",url:"https://www.ewg.org"},
-           {nm:"Optical brighteners",sev:"low",txt:"Make clothes 'look' whiter by staying on the fabric; can irritate skin.",src:"EWG",url:"https://www.ewg.org"},
-           {nm:"1,4-dioxane (trace)",sev:"med",txt:"A manufacturing byproduct flagged as a probable carcinogen; some brands test to avoid it.",src:"peer-reviewed",url:"https://pubmed.ncbi.nlm.nih.gov"}],
-    swap:{emoji:"🧺",name:"PureHome Fragrance-Free Detergent",score:80,why:"Small brand: no synthetic fragrance, tested for 1,4-dioxane."}},
-
-  {id:"canvas",small:1,mkt:"beauty",emoji:"🧼",tint:"#E7DCED",brand:"Clean Canvas",name:"Gentle Bar Soap",score:90,
-    bottom:"Short, honest ingredient list. No synthetic fragrance, no dyes, no parabens.",
-    flags:[{nm:"Fragrance-free",sev:"good",txt:"'Fragrance' can hide dozens of undisclosed chemicals — this skips it entirely.",src:"EWG Skin Deep",url:"https://www.ewg.org"},
-           {nm:"No parabens or sulfates",sev:"good",txt:"Avoids the two ingredient families shoppers most want to skip.",src:"EWG",url:"https://www.ewg.org"}],swap:null},
-  {id:"serum",small:0,mkt:"beauty",emoji:"🧴",tint:"#EBD3D8",brand:"GlowMax",name:"Anti-Aging Serum",score:44,
-    bottom:"Some real actives, but buried under synthetic fragrance and a preservative shoppers often avoid.",
-    flags:[{nm:"'Fragrance' (undisclosed)",sev:"med",txt:"A single word that can hide dozens of chemicals; a top driver of skin reactions.",src:"EWG Skin Deep",url:"https://www.ewg.org"},
-           {nm:"Phenoxyethanol",sev:"low",txt:"Common preservative; generally fine in small amounts, flagged by sensitive-skin users.",src:"EWG",url:"https://www.ewg.org"},
-           {nm:"Contains retinol",sev:"good",txt:"A genuinely evidence-backed skin active — the real reason it works.",src:"peer-reviewed",url:"https://pubmed.ncbi.nlm.nih.gov"}],
-    swap:{emoji:"🧴",name:"Clean Canvas Fragrance-Free Serum",score:78,why:"Small brand: same retinol, no synthetic fragrance."}}
+  {id:"wildroot",small:1,mkt:"food",emoji:"🌰",tint:"#EBD9C4",brand:"Wildroot Foods",name:"Date & Almond Bar",score:88,bottom:"Three ingredients you can pronounce. Whole-food energy, sweetened only by dates.",flags:[{nm:"3 whole ingredients",sev:"good",txt:"Dates, almonds, sea salt. Nothing added, nothing to flag.",src:"USDA",url:"https://www.usda.gov"},{nm:"Naturally high fiber",sev:"good",txt:"Fiber and healthy fats keep you full without a sugar crash.",src:"peer-reviewed",url:"https://pubmed.ncbi.nlm.nih.gov"}],swap:null},
+  {id:"sprout",small:1,mkt:"food",emoji:"🍼",tint:"#D7E8CF",brand:"Little Sprout",name:"Organic Baby Puffs",score:85,bottom:"A rare clean pick for little ones — organic, no added sugar, no dyes.",flags:[{nm:"No added sugar",sev:"good",txt:"Sweetness comes from real fruit and veg, not syrup.",src:"FDA labeling",url:"https://www.fda.gov"},{nm:"Organic whole grains",sev:"good",txt:"Certified organic — no synthetic pesticides in the supply chain.",src:"USDA Organic",url:"https://www.usda.gov"}],swap:null},
+  {id:"honest",small:1,mkt:"food",emoji:"🫧",tint:"#CFE0F0",brand:"Honest Field",name:"Sparkling Botanical Tonic",score:81,bottom:"Real botanicals, 4g of sugar, no dyes. A genuinely light everyday sparkling drink.",flags:[{nm:"4g sugar",sev:"good",txt:"A fraction of a soda — a touch of real fruit.",src:"FDA labeling",url:"https://www.fda.gov"},{nm:"Natural flavors (disclosed)",sev:"low",txt:"'Natural flavor' is broad; this brand publishes its sources — the trustworthy move.",src:"EWG",url:"https://www.ewg.org"}],swap:null},
+  {id:"cereal",small:0,sponsored:1,mkt:"food",emoji:"🥣",tint:"#F3D9A6",brand:"MorningCrunch",name:"Choco Loops Kids Cereal",score:34,bottom:"Mostly sugar and dyes dressed up with added vitamins. A cleaner bowl exists for the same price.",flags:[{nm:"Red 40 + Yellow 5 (dyes)",sev:"high",txt:"Synthetic dyes linked in reviews to hyperactivity in some children.",src:"CSPI",url:"https://www.cspinet.org"},{nm:"High-fructose corn syrup",sev:"high",txt:"13g added sugar per small serving — about 3 teaspoons.",src:"FDA labeling",url:"https://www.fda.gov"},{nm:"BHT preservative",sev:"med",txt:"Petroleum-derived; restricted in parts of the EU and Japan.",src:"EWG",url:"https://www.ewg.org"}],swap:{emoji:"🌾",name:"Little Sprout Whole-Grain O's",score:83,why:"Small brand: real whole grain, no dyes, a third of the sugar."}},
+  {id:"drink",small:0,sponsored:1,mkt:"food",emoji:"🧃",tint:"#A9D3EE",brand:"Volt",name:"Blue Sports Drink",score:22,bottom:"A soda in athletic clothing. Real electrolytes, but 34g sugar and a fuel-industry emulsifier.",flags:[{nm:"Brominated vegetable oil",sev:"high",txt:"Banned in the EU, UK and Japan; the FDA moved to revoke it in 2024.",src:"FDA",url:"https://www.fda.gov"},{nm:"34g added sugar",sev:"high",txt:"More sugar than a can of cola, sold as healthy hydration.",src:"FDA labeling",url:"https://www.fda.gov"}],swap:{emoji:"🥥",name:"Honest Field Coconut Electrolyte",score:80,why:"Small brand: real electrolytes, no BVO, a quarter of the sugar."}},
+  {id:"bar",small:0,mkt:"food",emoji:"🍫",tint:"#D9C1A0",brand:"FitPro",name:"Cookie-Dough Protein Bar",score:51,bottom:"Good protein, but the 'dough' flavor rides on artificial sweetener and sugar alcohols.",flags:[{nm:"Sucralose",sev:"med",txt:"Zero-calorie sweetener; emerging research questions gut and metabolic effects.",src:"peer-reviewed",url:"https://pubmed.ncbi.nlm.nih.gov"},{nm:"Sugar alcohols (maltitol)",sev:"med",txt:"Low-sugar on paper, but a common cause of bloating.",src:"CSPI",url:"https://www.cspinet.org"},{nm:"20g protein",sev:"good",txt:"Legitimately high protein — the reason to reach for it.",src:"USDA",url:"https://www.usda.gov"}],swap:{emoji:"🌰",name:"Wildroot Date & Almond Bar",score:88,why:"Small brand: whole-food protein & fiber, no sucralose."}},
+  {id:"noodle",small:0,mkt:"food",emoji:"🍜",tint:"#EEC7A0",brand:"QuickBowl",name:"Instant Noodles",score:29,bottom:"Cheap and fast, but one bowl is most of a day's sodium plus a fuel-derived preservative.",flags:[{nm:"1,820mg sodium",sev:"high",txt:"About 79% of a full day in one bowl — a real blood-pressure driver.",src:"FDA labeling",url:"https://www.fda.gov"},{nm:"TBHQ preservative",sev:"med",txt:"Petroleum-derived; intake limits exist for a reason.",src:"EWG",url:"https://www.ewg.org"}],swap:{emoji:"🍲",name:"Honest Field Miso Cup",score:69,why:"Small brand: real broth, ~40% less sodium, no TBHQ."}},
+  {id:"oats",small:0,mkt:"food",emoji:"🌾",tint:"#CFE0B4",brand:"Pantry Basics",name:"Plain Rolled Oats",score:96,bottom:"One ingredient: oats. Whole grain, high fiber, no additives. This is what clean looks like.",flags:[{nm:"100% whole grain",sev:"good",txt:"A single-ingredient food — nothing to flag.",src:"USDA",url:"https://www.usda.gov"},{nm:"Beta-glucan fiber",sev:"good",txt:"Well-studied for lowering LDL cholesterol.",src:"peer-reviewed",url:"https://pubmed.ncbi.nlm.nih.gov"}],swap:null},
+  {id:"purehome",small:1,mkt:"goods",emoji:"🫧",tint:"#CFE7E4",brand:"PureHome",name:"Plant-Based Dish Soap",score:86,bottom:"Cuts grease with coconut-derived cleaners, no synthetic fragrance or dye.",flags:[{nm:"Plant-based surfactants",sev:"good",txt:"Cleans with coconut-derived agents instead of petroleum.",src:"EWG",url:"https://www.ewg.org"},{nm:"No synthetic fragrance or dye",sev:"good",txt:"Skips the two things that make dish soap smell 'clean' but irritate skin.",src:"EWG",url:"https://www.ewg.org"}],swap:null},
+  {id:"sparkle",small:0,sponsored:1,mkt:"goods",emoji:"🧴",tint:"#BFE0EE",brand:"SparkleClean",name:"All-Purpose Spray",score:38,bottom:"Cuts grease, but the 'fresh scent' hides undisclosed chemicals and it uses a quat disinfectant.",flags:[{nm:"'Fragrance' (undisclosed)",sev:"med",txt:"One word hiding dozens of chemicals; a top asthma and skin trigger.",src:"EWG",url:"https://www.ewg.org"},{nm:"Quaternary ammonium (quats)",sev:"med",txt:"Disinfectant linked to asthma in frequent users.",src:"EWG",url:"https://www.ewg.org"}],swap:{emoji:"🫧",name:"PureHome Plant-Based Spray",score:84,why:"Small brand: same grease-cutting, no quats, no synthetic fragrance."}},
+  {id:"laundry",small:0,sponsored:1,mkt:"goods",emoji:"🧺",tint:"#D6D2EC",brand:"EverSoft",name:"Laundry Pods",score:41,bottom:"Convenient, but pods pack synthetic fragrance, brighteners, and a contamination risk shoppers avoid.",flags:[{nm:"'Fragrance'",sev:"med",txt:"Undisclosed scent chemicals that stay on skin-contact fabric all day.",src:"EWG",url:"https://www.ewg.org"},{nm:"1,4-dioxane (trace)",sev:"med",txt:"A byproduct flagged as a probable carcinogen; some brands test to avoid it.",src:"peer-reviewed",url:"https://pubmed.ncbi.nlm.nih.gov"}],swap:{emoji:"🧺",name:"PureHome Fragrance-Free Detergent",score:80,why:"Small brand: no synthetic fragrance, tested for 1,4-dioxane."}},
+  {id:"canvas",small:1,mkt:"beauty",emoji:"🧼",tint:"#E7DCED",brand:"Clean Canvas",name:"Gentle Bar Soap",score:90,bottom:"Short, honest ingredient list. No synthetic fragrance, no dyes, no parabens.",flags:[{nm:"Fragrance-free",sev:"good",txt:"'Fragrance' can hide dozens of undisclosed chemicals — this skips it entirely.",src:"EWG Skin Deep",url:"https://www.ewg.org"},{nm:"No parabens or sulfates",sev:"good",txt:"Avoids the two ingredient families shoppers most want to skip.",src:"EWG",url:"https://www.ewg.org"}],swap:null},
+  {id:"serum",small:0,sponsored:1,mkt:"beauty",emoji:"🧴",tint:"#EBD3D8",brand:"GlowMax",name:"Anti-Aging Serum",score:44,bottom:"Some real actives, but buried under synthetic fragrance and a preservative shoppers often avoid.",flags:[{nm:"'Fragrance' (undisclosed)",sev:"med",txt:"A single word that can hide dozens of chemicals; a top driver of skin reactions.",src:"EWG Skin Deep",url:"https://www.ewg.org"},{nm:"Contains retinol",sev:"good",txt:"A genuinely evidence-backed skin active — the real reason it works.",src:"peer-reviewed",url:"https://pubmed.ncbi.nlm.nih.gov"}],swap:{emoji:"🧴",name:"Clean Canvas Fragrance-Free Serum",score:78,why:"Small brand: same retinol, no synthetic fragrance."}}
 ];
 
+// ---------- state + storage ----------
+function load(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 const screenEl=document.getElementById('screen');
 let activeMkt="all";
-function toast(msg){
-  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
-  clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2200);
-}
+let MONETIZE=load('guardi_monetize',false);
+let HISTORY=load('guardi_hist',[]);
+let SAVED=load('guardi_saved',[]);
+let A=load('guardi_analytics',{scans:0,searches:0,views:0,swapClicks:0,adImpr:0,adClicks:0,sessions:0,days:[]});
+// session bump (once per load)
+A.sessions=(A.sessions||0)+1; const _t=todayStr(); if(!A.days.includes(_t))A.days.push(_t); save('guardi_analytics',A);
+function todayStr(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function bump(k,n){A[k]=(A[k]||0)+(n||1);save('guardi_analytics',A);}
+
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2400);}
 function ranked(list){return [...list].sort((a,b)=>(b.small-a.small)||(b.score-a.score));}
 function cat(m){return ranked(PRODUCTS.filter(p=>p.mkt===m));}
-
-// dynamic homepage: remember what the user looks at
-let HISTORY=[]; try{HISTORY=JSON.parse(localStorage.getItem('guardi_hist')||'[]')}catch(e){}
-function record(id){HISTORY=[id,...HISTORY.filter(x=>x!==id)].slice(0,8); try{localStorage.setItem('guardi_hist',JSON.stringify(HISTORY))}catch(e){}}
 function byIds(ids){return ids.map(i=>PRODUCTS.find(p=>p.id===i)).filter(Boolean);}
-function recommended(){
-  const mkts=[...new Set(byIds(HISTORY).map(p=>p.mkt))];
-  let pool=PRODUCTS.filter(p=>!HISTORY.includes(p.id) && (mkts.length?mkts.includes(p.mkt):true));
-  if(pool.length<4) pool=PRODUCTS.filter(p=>!HISTORY.includes(p.id));
-  return ranked(pool).slice(0,6);
+function recommended(){const mkts=[...new Set(byIds(HISTORY).map(p=>p.mkt))];let pool=PRODUCTS.filter(p=>!HISTORY.includes(p.id)&&(mkts.length?mkts.includes(p.mkt):true));if(pool.length<4)pool=PRODUCTS.filter(p=>!HISTORY.includes(p.id));return ranked(pool).slice(0,6);}
+
+// ---------- AD-RANKING ENGINE ----------
+// Off  -> pure organic, small-business-first (day 1).
+// On   -> slots 1 & 3 organic small-biz, slots 2 & 4 sponsored enterprise, rest a mix.
+function rankWithAds(list){
+  if(!MONETIZE) return ranked(list).map(p=>({p,ad:false,slot:null}));
+  const smalls=ranked(list.filter(p=>p.small));
+  const sponsored=ranked(list.filter(p=>!p.small&&p.sponsored));
+  const organicBig=ranked(list.filter(p=>!p.small&&!p.sponsored));
+  const out=[]; const used=new Set();
+  const takeSmall=()=>{const x=smalls.find(p=>!used.has(p.id));if(x){used.add(x.id);return x}};
+  const takeSpon=()=>{const x=sponsored.find(p=>!used.has(p.id));if(x){used.add(x.id);return x}};
+  const plan=[['small'],['spon'],['small'],['spon']];
+  plan.forEach(([type])=>{const p=type==='small'?takeSmall():takeSpon();if(p)out.push({p,ad:type==='spon',slot:out.length+1});});
+  const rest=ranked(list.filter(p=>!used.has(p.id)));
+  rest.forEach(p=>out.push({p,ad:!!p.sponsored,slot:null}));
+  return out;
 }
 
-function ccard(p){const b=band(p.score);return `<div class="cc"><button class="feat" data-id="${p.id}">
-  <div class="top" style="background:${p.tint}">${p.small?'<span class="badge">✦ Independent</span>':''}${p.emoji}</div>
-  <div class="body"><div class="nm">${p.name}</div><div class="ct ${p.small?'sm':''}">${p.small?'✦ Small business':p.brand}</div>
-    <span class="scorepill"><span class="dot" style="background:${b.c}"></span><span class="mono" style="color:${b.c}">${p.score}</span></span></div>
-</button></div>`;}
+function ccard(p){const b=band(p.score);return `<div class="cc"><button class="feat" data-id="${p.id}"><div class="top" style="background:${p.tint}">${p.small?'<span class="badge">✦ Independent</span>':''}${p.emoji}</div><div class="body"><div class="nm">${p.name}</div><div class="ct ${p.small?'sm':''}">${p.small?'✦ Small business':p.brand}</div><span class="scorepill"><span class="dot" style="background:${b.c}"></span><span class="mono" style="color:${b.c}">${p.score}</span></span></div></button></div>`;}
 
-function lrow(p){const b=band(p.score);return `<button class="row" data-id="${p.id}">
-  <div class="th" style="background:${p.tint}">${p.emoji}</div>
-  <div class="mid"><div class="nm">${p.name}</div><div class="ct">${p.small?'<span class="tagsm">✦ Small business</span>':p.brand+' · brand'}</div></div>
-  <div class="sc"><b class="mono" style="color:${b.c}">${p.score}</b><small>/100</small></div></button>`;}
+function adRow(o){const p=o.p,b=band(p.score);if(o.ad)bump('adImpr');
+  const tag=o.ad?'<span class="adlbl">Sponsored</span>':(p.small?'<span class="tagorg">✦ Organic · small business</span>':`${p.brand}`);
+  const slot=o.slot?`<span class="slotn">Slot ${o.slot} · ${o.ad?'paid':'earned'}</span>`:'';
+  return `<button class="row ${o.ad?'ad':''}" data-id="${p.id}" data-ad="${o.ad?1:0}">${slot}<div class="th" style="background:${p.tint}">${p.emoji}</div><div class="mid"><div class="nm">${p.name}</div><div class="ct">${tag}</div></div><div class="sc"><b class="mono" style="color:${b.c}">${p.score}</b><small>/100</small></div></button>`;}
 
-function heroHTML(){return `<div class="hero">
-  <div class="brandrow"><div class="brandmark">${SHIELD}<span class="wordmark">Guar<i>di</i></span></div><div class="acct">🙂</div></div>
-  <h1 class="h1">Know what's <em>really</em> in it.</h1>
-  <p class="sub">Take a picture of any product. Get the truth, cited — plus a cleaner swap.</p>
-  <button class="scanhero" id="scan"><span class="ic">📷</span>
-    <span style="flex:1"><b>Take a picture</b><span>Point your camera at any product or label</span></span>
-    <span aria-hidden="true" style="font-size:19px">›</span></button>
-  <div class="searchmini"><span style="color:var(--ink-soft)" aria-hidden="true">⌕</span><input id="q" placeholder="Search products" aria-label="Search products"><span class="cam" aria-hidden="true">📷</span></div>
-  <div class="miniflow"><b>📷 Snap</b><span class="sep">·</span><b>🔎 See the truth</b><span class="sep">·</span><b>↔ Swap</b></div>
-</div>`;}
-
+// ---------- HOME ----------
+function heroHTML(){return `<div class="hero"><div class="brandrow"><div class="brandmark">${SHIELD}<span class="wordmark">Guar<i>di</i></span></div><div class="acct">🙂</div></div><h1 class="h1">Know what's <em>really</em> in it.</h1><p class="sub">Take a picture of any product. Get the truth, cited — plus a cleaner swap.</p><button class="scanhero" id="scan"><span class="ic">📷</span><span style="flex:1"><b>Take a picture</b><span>Point your camera at any product or label</span></span><span aria-hidden="true" style="font-size:19px">›</span></button><div class="searchmini"><span style="color:var(--ink-soft)" aria-hidden="true">⌕</span><input id="q" placeholder="Search products" aria-label="Search products"><span aria-hidden="true">📷</span></div><div class="miniflow"><b>📷 Snap</b><span class="sep">·</span><b>🔎 See the truth</b><span class="sep">·</span><b>↔ Swap</b></div></div>`;}
 function marketsHTML(){return `<div class="markets">${MARKETS.map(m=>`<button class="mkt ${m[0]===activeMkt?'on':''}" data-m="${m[0]}"><span class="e">${m[1]}</span>${m[2]}</button>`).join('')}</div>`;}
 
 function homeBodyHTML(qv){
-  if(qv){
-    const ql=qv.toLowerCase();
-    const hits=ranked(PRODUCTS.filter(p=>(p.name+" "+p.brand+" "+p.mkt).toLowerCase().includes(ql)));
-    const safe=qv.replace(/[<>&"]/g,'');
-    return `<div class="sechead"><h2>Results for “${safe}”</h2></div>
-      <div class="list">${hits.length?hits.map(lrow).join(''):'<p style="color:var(--ink-soft);font-size:13.5px;padding:4px 2px">Nothing found — try “cereal”, “soap”, or “noodles”.</p>'}</div>`;
-  }
+  if(qv){const ql=qv.toLowerCase();const hits=PRODUCTS.filter(p=>(p.name+" "+p.brand+" "+p.mkt).toLowerCase().includes(ql));const safe=qv.replace(/[<>&"]/g,'');
+    if(!hits.length)return `<div class="sechead"><h2>Results for “${safe}”</h2></div><div class="list"><p style="color:var(--ink-soft);font-size:13.5px;padding:4px 2px">Nothing found — try “cereal”, “soap”, or “noodles”.</p></div>`;
+    return `<div class="sechead"><h2>Results for “${safe}”</h2>${MONETIZE?'<span class="note">incl. sponsored</span>':''}</div><div class="list">${rankWithAds(hits).map(adRow).join('')}</div>`;}
   let body="";
   if(activeMkt==="all"){
-    if(HISTORY.length){
-      const recents=byIds(HISTORY).slice(0,6);
-      body += `<div class="sechead"><h2>Pick up where you left off</h2></div><div class="carou">${recents.map(ccard).join('')}</div>`;
-      const recs=recommended();
-      if(recs.length) body += `<div class="sechead"><h2>Recommended for you</h2><span class="note">from your activity</span></div><div class="carou">${recs.map(ccard).join('')}</div>`;
-    }
-    const smalls=ranked(PRODUCTS.filter(p=>p.small)).slice(0,4);
-    body += `<div class="sechead"><h2>Small businesses we love</h2><button class="note" id="whynote">why? →</button></div>
-      <div class="carou">${smalls.map(ccard).join('')}</div>`;
-    CATS.forEach(([m,label])=>{
-      body += `<div class="sechead"><h2>Popular in ${label}</h2></div><div class="carou">${cat(m).map(ccard).join('')}</div>`;
-    });
+    if(HISTORY.length){const recents=byIds(HISTORY).slice(0,6);body+=`<div class="sechead"><h2>Pick up where you left off</h2></div><div class="carou">${recents.map(ccard).join('')}</div>`;const recs=recommended();if(recs.length)body+=`<div class="sechead"><h2>Recommended for you</h2><span class="note">from your activity</span></div><div class="carou">${recs.map(ccard).join('')}</div>`;}
+    const smalls=ranked(PRODUCTS.filter(p=>p.small)).slice(0,4);body+=`<div class="sechead"><h2>Small businesses we love</h2><button class="note" id="whynote">why? →</button></div><div class="carou">${smalls.map(ccard).join('')}</div>`;
+    CATS.forEach(([m,label])=>{body+=`<div class="sechead"><h2>Popular in ${label}</h2></div><div class="carou">${cat(m).map(ccard).join('')}</div>`;});
   } else {
     const label=MARKETS.find(m=>m[0]===activeMkt)[2];
-    body += `<div class="sechead"><h2>${label}</h2><span class="note">small brands first</span></div>
-      <div class="list">${cat(activeMkt).map(lrow).join('')}</div>`;
+    body+=`<div class="sechead"><h2>${label}</h2><span class="note">${MONETIZE?'organic + sponsored':'small brands first'}</span></div><div class="list">${rankWithAds(PRODUCTS.filter(p=>p.mkt===activeMkt)).map(adRow).join('')}</div>`;
   }
   return body;
 }
-function renderHomeBody(qv){
-  document.getElementById('homebody').innerHTML=homeBodyHTML(qv);
-  document.querySelectorAll('#homebody [data-id]').forEach(el=>el.onclick=()=>detail(el.dataset.id));
-  const w=document.getElementById('whynote');
-  if(w) w.onclick=()=>toast("Small independent brands rank first when quality matches — that's the point of Guardi.");
+function wireBody(){
+  screenEl.querySelectorAll('#homebody [data-id]').forEach(el=>el.onclick=()=>{if(el.dataset.ad==="1")bump('adClicks');detail(el.dataset.id);});
+  const w=document.getElementById('whynote');if(w)w.onclick=()=>toast("Independent brands earn the top organic slots when quality matches. Big brands can only buy the alternating 'Sponsored' slots — never the verdict.");
 }
-function home(){
-  screenEl.scrollTop=0;
-  screenEl.innerHTML = heroHTML() + marketsHTML() + `<div id="homebody"></div>` +
-    `<p class="foot">Departments are ordered by market size. Small brands rank first inside each — that's the point. Guardi aggregates cited third-party sources (EWG, CSPI, FDA, peer-reviewed) and reports what they say.<br><br><b style="color:var(--ink-soft)">Prototype · sample data for demonstration.</b></p>`;
-  renderHomeBody("");
-  document.getElementById('scan').onclick=scan;
-  const q=document.getElementById('q');
-  q.oninput=()=>renderHomeBody(q.value.trim());
-  screenEl.querySelectorAll('[data-m]').forEach(el=>el.onclick=()=>{activeMkt=el.dataset.m;home();});
-}
+function renderBody(qv){document.getElementById('homebody').innerHTML=homeBodyHTML(qv);wireBody();}
+function home(){setActive('nav-home');screenEl.scrollTop=0;screenEl.innerHTML=heroHTML()+marketsHTML()+`<div id="homebody"></div>`+`<p class="foot">Departments ordered by market size. Small brands rank first inside each. ${MONETIZE?'<b style="color:var(--spon)">Monetization ON</b> — slots 2 & 4 are paid, labeled Sponsored; the health score is never for sale.':'Monetization is OFF (launch mode) — pure organic ranking.'}<br><br><b style="color:var(--ink-soft)">Prototype · sample data.</b></p>`;
+  renderBody("");document.getElementById('scan').onclick=scan;const q=document.getElementById('q');q.oninput=()=>{if(q.value.trim())bump('searches');renderBody(q.value.trim());};
+  screenEl.querySelectorAll('[data-m]').forEach(el=>el.onclick=()=>{activeMkt=el.dataset.m;home();});}
 
-function scan(){
-  const ov=document.getElementById('scanning');
-  if(ov.classList.contains('show')) return;
-  ov.classList.add('show');
-  activeMkt="all";
-  let pool=PRODUCTS.filter(p=>p.score<60); if(!pool.length) pool=PRODUCTS;
-  const pick=pool[Math.floor(Math.random()*pool.length)];
-  setTimeout(()=>{ov.classList.remove('show'); detail(pick.id);},1500);
-}
+// ---------- SCAN (real camera capture) ----------
+const camInput=document.getElementById('cam');
+camInput.onchange=()=>{if(camInput.files&&camInput.files.length)runScan();camInput.value="";};
+function scan(){camInput.click();} // opens the real camera on mobile; file picker on desktop
+function runScan(){const ov=document.getElementById('scanning');if(ov.classList.contains('show'))return;ov.classList.add('show');bump('scans');activeMkt="all";let pool=PRODUCTS.filter(p=>p.score<60);if(!pool.length)pool=PRODUCTS;const pick=pool[Math.floor(Math.random()*pool.length)];setTimeout(()=>{ov.classList.remove('show');detail(pick.id);},1500);}
 
-function detail(id){
-  const p=PRODUCTS.find(x=>x.id===id); if(!p)return; record(id); screenEl.scrollTop=0;
-  const b=band(p.score),R=41,C=2*Math.PI*R,off=C*(1-p.score/100);
-  screenEl.innerHTML=`<button class="back" id="back">‹ Back</button>
-  <div class="dhero"><div class="th" style="background:${p.tint}">${p.emoji}</div>
-    <div><h1>${p.name}</h1><div class="ct">${p.small?'<span class="tagsm" style="color:var(--brand-ink);font-weight:700">✦ Small business</span>':p.brand+' · brand'}</div></div></div>
-  <div class="scorewrap"><div class="ring"><svg width="92" height="92" viewBox="0 0 92 92">
-    <circle cx="46" cy="46" r="${R}" fill="none" stroke="var(--surface-2)" stroke-width="8"/>
-    <circle cx="46" cy="46" r="${R}" fill="none" stroke="${b.c}" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}"/>
-    </svg><div class="num"><b class="mono" style="color:${b.c}">${p.score}</b><small>/ 100</small></div></div>
-    <div class="verdict"><b style="color:${b.c}">${b.w}</b><p>${p.bottom}</p></div></div>
-  <div class="dsec"><h2>What's inside — and where we got it</h2>
-    ${p.flags.map(f=>{const s=SEV[f.sev];return `<div class="flag"><div class="r"><span class="nm">${f.nm}</span><span class="sev" style="background:${s.bg};color:${s.fg}">${s.lbl}</span></div><p>${f.txt}</p><span class="source">Source: <a href="${f.url}" target="_blank" rel="noopener">${f.src}</a> ↗</span></div>`;}).join('')}</div>
-  ${p.swap?`<div class="dsec"><h2 style="margin-bottom:8px">A cleaner swap</h2></div>
-  <div class="swap"><span class="lbl">✦ Guardi recommends a small brand</span>
-    <div class="b"><div class="th">${p.swap.emoji}</div><div style="flex:1"><div class="nm">${p.swap.name}</div><div class="why">${p.swap.why}</div></div>
-      <span class="scorepill mono" style="background:var(--surface);color:var(--good)">${p.swap.score}</span></div>
-    <button class="buy" onclick="toast('In the real app this opens the seller — Guardi earns a small affiliate cut. No inventory, ever.')">Find it &amp; buy <small>· affiliate</small></button>
-  </div>`:`<div class="goodnote"><b>You're good.</b> Nothing to flag — a genuinely clean choice.</div>`}
+// ---------- DETAIL ----------
+function detail(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;HISTORY=[id,...HISTORY.filter(x=>x!==id)].slice(0,8);save('guardi_hist',HISTORY);bump('views');screenEl.scrollTop=0;
+  const b=band(p.score),R=41,C=2*Math.PI*R,off=C*(1-p.score/100);const isSaved=SAVED.includes(id);
+  screenEl.innerHTML=`<button class="back" id="back">‹ Back</button><div class="dhero"><div class="th" style="background:${p.tint}">${p.emoji}</div><div><h1>${p.name}</h1><div class="ct">${p.small?'<span class="tagsm" style="color:var(--brand-ink);font-weight:700">✦ Small business</span>':p.brand+' · brand'}</div></div></div>
+  <div class="scorewrap"><div class="ring"><svg width="92" height="92" viewBox="0 0 92 92"><circle cx="46" cy="46" r="${R}" fill="none" stroke="var(--surface-2)" stroke-width="8"/><circle cx="46" cy="46" r="${R}" fill="none" stroke="${b.c}" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}"/></svg><div class="num"><b class="mono" style="color:${b.c}">${p.score}</b><small>/ 100</small></div></div><div class="verdict"><b style="color:${b.c}">${band(p.score).w}</b><p>${p.bottom}</p></div></div>
+  <div class="dsec"><h2>What's inside — and where we got it</h2>${p.flags.map(f=>{const s=SEV[f.sev];return `<div class="flag"><div class="r"><span class="nm">${f.nm}</span><span class="sev" style="background:${s.bg};color:${s.fg}">${s.lbl}</span></div><p>${f.txt}</p><span class="source">Source: <a href="${f.url}" target="_blank" rel="noopener">${f.src}</a> ↗</span></div>`;}).join('')}</div>
+  ${p.swap?`<div class="dsec"><h2 style="margin-bottom:8px">A cleaner swap</h2></div><div class="swap"><span class="lbl">✦ Guardi recommends a small brand</span><div class="b"><div class="th">${p.swap.emoji}</div><div style="flex:1"><div class="nm">${p.swap.name}</div><div class="why">${p.swap.why}</div></div><span class="scorepill mono" style="background:var(--surface);color:var(--good)">${p.swap.score}</span></div><button class="buy" id="buybtn">Find it &amp; buy <small>· affiliate</small></button></div>`:`<div class="goodnote"><b>You're good.</b> Nothing to flag — a genuinely clean choice.</div>`}
+  <button class="savebtn" id="savebtn">${isSaved?'♥ Saved':'♡ Save this'}</button>
   <p class="disc">Sample data for this prototype. Real Guardi cites live third-party sources for every claim.</p><div style="height:14px"></div>`;
-  const bk=document.getElementById('back');
-  bk.onclick=home;
-  bk.focus({preventScroll:true});
+  const bk=document.getElementById('back');bk.onclick=home;bk.focus({preventScroll:true});
+  const bb=document.getElementById('buybtn');if(bb)bb.onclick=()=>{bump('swapClicks');toast("In the real app this opens the seller — Guardi earns a small affiliate cut. No inventory, ever.");};
+  document.getElementById('savebtn').onclick=(e)=>{if(SAVED.includes(id)){SAVED=SAVED.filter(x=>x!==id);e.target.textContent='♡ Save this';}else{SAVED=[id,...SAVED];e.target.textContent='♥ Saved';}save('guardi_saved',SAVED);};
 }
+
+// ---------- SAVED ----------
+function saved(){setActive('nav-saved');screenEl.scrollTop=0;const items=byIds(SAVED);
+  screenEl.innerHTML=`<div class="phead"><h1>Saved</h1><p>Products you bookmarked.</p></div>${items.length?`<div class="list" id="homebody">${items.map(p=>adRow({p,ad:false,slot:null})).join('')}</div>`:`<div class="panel" style="margin-top:16px"><h3>Nothing saved yet</h3><p>Tap ♡ Save on any product to keep it here.</p></div>`}`;
+  screenEl.querySelectorAll('[data-id]').forEach(el=>el.onclick=()=>detail(el.dataset.id));}
+
+// ---------- YOU / traffic tracker + monetization toggle ----------
+function you(){setActive('nav-you');screenEl.scrollTop=0;const days=(A.days||[]).length;
+  screenEl.innerHTML=`<div class="phead"><h1>You</h1><p>Your activity — and Guardi's growth tracker.</p></div>
+  <div class="stats">
+    <div class="stat"><b class="mono">${A.scans||0}</b><span>Photos taken</span></div>
+    <div class="stat"><b class="mono">${A.views||0}</b><span>Products viewed</span></div>
+    <div class="stat"><b class="mono">${A.swapClicks||0}</b><span>Swap clicks</span></div>
+    <div class="stat"><b class="mono">${A.searches||0}</b><span>Searches</span></div>
+    <div class="stat"><b class="mono">${A.sessions||0}</b><span>Sessions</span></div>
+    <div class="stat"><b class="mono">${days}</b><span>Active days</span></div>
+  </div>
+  <div class="panel"><h3>📈 Traffic tracker</h3><p>This is the "know when to become the market" meter. When scans, return visits, and swap clicks climb past your thresholds, that's the signal to flip monetization on and pitch brands. ${MONETIZE?`So far: <b class="mono">${A.adImpr||0}</b> sponsored views, <b class="mono">${A.adClicks||0}</b> sponsored clicks.`:'(Real app: wire to Plausible/PostHog for cohort retention.)'}</p></div>
+  <div class="panel"><div class="toggle"><div><h3>Monetization preview</h3><p>Off = pure organic (launch). On = show the paid ad slots (2 & 4) — for demoing the revenue model.</p></div><div class="switch ${MONETIZE?'on':''}" id="mon" role="switch" aria-checked="${MONETIZE}" tabindex="0"></div></div></div>
+  <div class="panel"><h3>How the ad engine ranks</h3><p><b>Slots 1 & 3</b> — organic, small businesses (earned by quality, never sold).<br><b>Slots 2 & 4</b> — sponsored, larger enterprises (paid, always labeled).<br><b>Below</b> — a values-weighted mix.<br>The health score itself is <b>never</b> for sale — ads change placement, not the verdict.</p></div>
+  <p class="disc">Prototype · analytics stored locally on this device only.</p><div style="height:14px"></div>`;
+  const sw=document.getElementById('mon');const flip=()=>{MONETIZE=!MONETIZE;save('guardi_monetize',MONETIZE);you();toast(MONETIZE?"Monetization ON — sponsored slots now appear in results":"Monetization OFF — pure organic ranking");};
+  sw.onclick=flip;sw.onkeydown=(e)=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();flip();}};}
+
+function setActive(id){document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.id===id));}
 document.getElementById('nav-home').onclick=home;
 document.getElementById('nav-camera').onclick=scan;
-document.getElementById('nav-saved').onclick=()=>toast("Saved items are coming soon");
-document.getElementById('nav-you').onclick=()=>toast("Profiles are coming soon");
+document.getElementById('nav-saved').onclick=saved;
+document.getElementById('nav-you').onclick=you;
 home();
 </script>
