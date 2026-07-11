@@ -246,7 +246,7 @@ const INGREDIENT_TEXT_FLAGS = [
   {
     match: /palm oil/i,
     flag: {
-      name: "Palm Oil",
+      nm: "Palm Oil",
       sev: "low",
       txt: "High in saturated fat, and a major driver of tropical deforestation. Not a direct health hazard at typical intake, but flagged by EWG and sustainability groups for environmental impact.",
       src: "EWG",
@@ -256,7 +256,7 @@ const INGREDIENT_TEXT_FLAGS = [
   {
     match: /high[\s-]?fructose corn syrup|hfcs/i,
     flag: {
-      name: "High Fructose Corn Syrup",
+      nm: "High Fructose Corn Syrup",
       sev: "med",
       txt: "A highly refined sweetener linked in observational studies to higher risk of obesity and metabolic issues when consumed in excess. CSPI recommends limiting added sugars generally, HFCS included.",
       src: "CSPI",
@@ -305,7 +305,7 @@ function deriveAdditiveFlags(offProduct) {
     for (const entry of INGREDIENT_TEXT_FLAGS) {
       if (entry.match.test(ingredientsText)) {
         // Avoid duplicate flags if OFF also tagged it (rare, but be safe).
-        const already = flags.some((f) => f.nm === entry.flag.name);
+        const already = flags.some((f) => f.nm === entry.flag.nm);
         if (!already) flags.push({ ...entry.flag });
       }
     }

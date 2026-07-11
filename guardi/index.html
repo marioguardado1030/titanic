@@ -147,24 +147,28 @@ function recommended(){const mkts=[...new Set(byIds(HISTORY).map(p=>p.mkt))];let
 // ---------- AD-RANKING ENGINE ----------
 // Off  -> pure organic, small-business-first (day 1).
 // On   -> slots 1 & 3 organic small-biz, slots 2 & 4 sponsored enterprise, rest a mix.
+// Slot numbers are FIXED by plan position, so 1&3 are always organic and 2&4 always sponsored;
+// a missing type simply leaves that slot empty rather than mislabeling.
+const seenAds=new Set(); // unique sponsored products viewed this session (impression dedup)
 function rankWithAds(list){
   if(!MONETIZE) return ranked(list).map(p=>({p,ad:false,slot:null}));
   const smalls=ranked(list.filter(p=>p.small));
   const sponsored=ranked(list.filter(p=>!p.small&&p.sponsored));
-  const organicBig=ranked(list.filter(p=>!p.small&&!p.sponsored));
   const out=[]; const used=new Set();
   const takeSmall=()=>{const x=smalls.find(p=>!used.has(p.id));if(x){used.add(x.id);return x}};
   const takeSpon=()=>{const x=sponsored.find(p=>!used.has(p.id));if(x){used.add(x.id);return x}};
-  const plan=[['small'],['spon'],['small'],['spon']];
-  plan.forEach(([type])=>{const p=type==='small'?takeSmall():takeSpon();if(p)out.push({p,ad:type==='spon',slot:out.length+1});});
+  const plan=[{slot:1,type:'small'},{slot:2,type:'spon'},{slot:3,type:'small'},{slot:4,type:'spon'}];
+  plan.forEach(({slot,type})=>{const p=type==='small'?takeSmall():takeSpon();if(p)out.push({p,ad:type==='spon',slot});});
   const rest=ranked(list.filter(p=>!used.has(p.id)));
   rest.forEach(p=>out.push({p,ad:!!p.sponsored,slot:null}));
   return out;
 }
 
-function ccard(p){const b=band(p.score);return `<div class="cc"><button class="feat" data-id="${p.id}"><div class="top" style="background:${p.tint}">${p.small?'<span class="badge">✦ Independent</span>':''}${p.emoji}</div><div class="body"><div class="nm">${p.name}</div><div class="ct ${p.small?'sm':''}">${p.small?'✦ Small business':p.brand}</div><span class="scorepill"><span class="dot" style="background:${b.c}"></span><span class="mono" style="color:${b.c}">${p.score}</span></span></div></button></div>`;}
+function ccard(p){const b=band(p.score);const isAd=MONETIZE&&p.sponsored;if(isAd&&!seenAds.has(p.id)){seenAds.add(p.id);bump('adImpr');}
+  const sub=isAd?'<span class="adlbl">Sponsored</span>':(p.small?'✦ Small business':p.brand);
+  return `<div class="cc"><button class="feat" data-id="${p.id}" data-ad="${isAd?1:0}"><div class="top" style="background:${p.tint}">${p.small?'<span class="badge">✦ Independent</span>':''}${p.emoji}</div><div class="body"><div class="nm">${p.name}</div><div class="ct ${p.small?'sm':''}">${sub}</div><span class="scorepill"><span class="dot" style="background:${b.c}"></span><span class="mono" style="color:${b.c}">${p.score}</span></span></div></button></div>`;}
 
-function adRow(o){const p=o.p,b=band(p.score);if(o.ad)bump('adImpr');
+function adRow(o){const p=o.p,b=band(p.score);if(o.ad&&!seenAds.has(p.id)){seenAds.add(p.id);bump('adImpr');}
   const tag=o.ad?'<span class="adlbl">Sponsored</span>':(p.small?'<span class="tagorg">✦ Organic · small business</span>':`${p.brand}`);
   const slot=o.slot?`<span class="slotn">Slot ${o.slot} · ${o.ad?'paid':'earned'}</span>`:'';
   return `<button class="row ${o.ad?'ad':''}" data-id="${p.id}" data-ad="${o.ad?1:0}">${slot}<div class="th" style="background:${p.tint}">${p.emoji}</div><div class="mid"><div class="nm">${p.name}</div><div class="ct">${tag}</div></div><div class="sc"><b class="mono" style="color:${b.c}">${p.score}</b><small>/100</small></div></button>`;}
@@ -193,8 +197,8 @@ function wireBody(){
   const w=document.getElementById('whynote');if(w)w.onclick=()=>toast("Independent brands earn the top organic slots when quality matches. Big brands can only buy the alternating 'Sponsored' slots — never the verdict.");
 }
 function renderBody(qv){document.getElementById('homebody').innerHTML=homeBodyHTML(qv);wireBody();}
-function home(){setActive('nav-home');screenEl.scrollTop=0;screenEl.innerHTML=heroHTML()+marketsHTML()+`<div id="homebody"></div>`+`<p class="foot">Departments ordered by market size. Small brands rank first inside each. ${MONETIZE?'<b style="color:var(--spon)">Monetization ON</b> — slots 2 & 4 are paid, labeled Sponsored; the health score is never for sale.':'Monetization is OFF (launch mode) — pure organic ranking.'}<br><br><b style="color:var(--ink-soft)">Prototype · sample data.</b></p>`;
-  renderBody("");document.getElementById('scan').onclick=scan;const q=document.getElementById('q');q.oninput=()=>{if(q.value.trim())bump('searches');renderBody(q.value.trim());};
+function home(){setActive('nav-home');screenEl.scrollTop=0;screenEl.innerHTML=heroHTML()+marketsHTML()+`<div id="homebody"></div>`+`<p class="foot">Departments ordered by market size. Small brands rank first inside each. ${MONETIZE?'<b style="color:var(--spon)">Monetization ON</b> — sponsored items are always labeled (slots 2 & 4 in results); the health score is never for sale.':'Monetization is OFF (launch mode) — pure organic ranking.'}<br><br><b style="color:var(--ink-soft)">Prototype · sample data.</b></p>`;
+  renderBody("");document.getElementById('scan').onclick=scan;const q=document.getElementById('q');q.oninput=()=>{renderBody(q.value.trim());clearTimeout(q._t);q._t=setTimeout(()=>{if(q.value.trim())bump('searches');},900);};
   screenEl.querySelectorAll('[data-m]').forEach(el=>el.onclick=()=>{activeMkt=el.dataset.m;home();});}
 
 // ---------- SCAN (real camera capture) ----------
@@ -237,11 +241,11 @@ function you(){setActive('nav-you');screenEl.scrollTop=0;const days=(A.days||[])
   <div class="panel"><div class="toggle"><div><h3>Monetization preview</h3><p>Off = pure organic (launch). On = show the paid ad slots (2 & 4) — for demoing the revenue model.</p></div><div class="switch ${MONETIZE?'on':''}" id="mon" role="switch" aria-checked="${MONETIZE}" tabindex="0"></div></div></div>
   <div class="panel"><h3>How the ad engine ranks</h3><p><b>Slots 1 & 3</b> — organic, small businesses (earned by quality, never sold).<br><b>Slots 2 & 4</b> — sponsored, larger enterprises (paid, always labeled).<br><b>Below</b> — a values-weighted mix.<br>The health score itself is <b>never</b> for sale — ads change placement, not the verdict.</p></div>
   <p class="disc">Prototype · analytics stored locally on this device only.</p><div style="height:14px"></div>`;
-  const sw=document.getElementById('mon');const flip=()=>{MONETIZE=!MONETIZE;save('guardi_monetize',MONETIZE);you();toast(MONETIZE?"Monetization ON — sponsored slots now appear in results":"Monetization OFF — pure organic ranking");};
+  const sw=document.getElementById('mon');const flip=()=>{MONETIZE=!MONETIZE;save('guardi_monetize',MONETIZE);seenAds.clear();you();const s=document.getElementById('mon');if(s)s.focus();toast(MONETIZE?"Monetization ON — sponsored slots now appear in results":"Monetization OFF — pure organic ranking");};
   sw.onclick=flip;sw.onkeydown=(e)=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();flip();}};}
 
 function setActive(id){document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.id===id));}
-document.getElementById('nav-home').onclick=home;
+document.getElementById('nav-home').onclick=()=>{activeMkt="all";home();};
 document.getElementById('nav-camera').onclick=scan;
 document.getElementById('nav-saved').onclick=saved;
 document.getElementById('nav-you').onclick=you;
